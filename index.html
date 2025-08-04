@@ -19,43 +19,39 @@
             --card-bg: #2a2a2a;
             --shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
             --transition: all 0.4s ease;
-            --border-radius: 12px; /* Consistent border-radius */
+            --border-radius: 12px;
         }
 
-        /* Dark Red Theme */
         [data-theme="dark-red"] {
             --bg-color: #330000;
             --text-color: #ffffff;
-            --accent-color: #1a1a1a; /* Inverted accent for contrast */
+            --accent-color: #1a1a1a;
             --card-bg: #4d0000;
         }
 
-        /* Base Body Styles */
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif; /* Using Inter font */
+            font-family: 'Inter', sans-serif;
             background: var(--bg-color);
             color: var(--text-color);
             transition: var(--transition);
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
             position: relative;
-            min-height: 100vh; /* Ensure body takes full viewport height */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* Particle Background Canvas */
         #particle-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Behind other content */
-            display: block; /* Ensure it's rendered */
+            z-index: -1;
+            display: block;
         }
 
-        /* Navbar Styles */
         .navbar {
             width: 250px;
             height: 100vh;
@@ -66,14 +62,14 @@
             transform: translateX(0);
             transition: var(--transition);
             z-index: 10;
-            border-radius: 0 var(--border-radius) var(--border-radius) 0; /* Rounded on right side */
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center nav items vertically */
+            justify-content: center;
         }
 
         .navbar.collapsed {
-            transform: translateX(-100%); /* Hide navbar */
+            transform: translateX(-100%);
         }
 
         .navbar ul {
@@ -83,19 +79,19 @@
         }
 
         .navbar li {
-            margin: 15px 0; /* Adjusted margin */
+            margin: 15px 0;
         }
 
         .navbar a {
             color: var(--text-color);
             text-decoration: none;
-            font-size: 1.1em; /* Slightly smaller font */
-            display: flex; /* For icon and text alignment */
+            font-size: 1.1em;
+            display: flex;
             align-items: center;
             padding: 10px 15px;
             border-radius: 8px;
             transition: var(--transition);
-            transform-style: preserve-3d; /* For 3D hover effect */
+            transform-style: preserve-3d;
         }
 
         .navbar a i {
@@ -105,11 +101,10 @@
 
         .navbar a:hover {
             background: var(--accent-color);
-            transform: scale(1.05); /* Slight scale on hover */
+            transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
         }
 
-        /* Navbar Toggle Button for Mobile */
         .navbar-toggle {
             position: fixed;
             top: 20px;
@@ -120,9 +115,9 @@
             border-radius: var(--border-radius);
             color: var(--text-color);
             cursor: pointer;
-            z-index: 11; /* Above navbar */
+            z-index: 11;
             transition: var(--transition);
-            display: none; /* Hidden by default on desktop */
+            display: none;
         }
 
         .navbar-toggle:hover {
@@ -130,7 +125,6 @@
             box-shadow: var(--shadow);
         }
 
-        /* Theme Toggle Button */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -142,7 +136,7 @@
             cursor: pointer;
             transition: var(--transition);
             z-index: 10;
-            color: var(--text-color); /* Icon color */
+            color: var(--text-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -153,22 +147,21 @@
             box-shadow: var(--shadow);
         }
 
-        /* Search Bar */
         .search-bar {
             margin: 20px;
             padding: 10px 20px;
             background: var(--card-bg);
-            border-radius: 25px; /* More rounded */
+            border-radius: 25px;
             display: flex;
             align-items: center;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            margin-left: 270px; /* Offset for navbar */
-            max-width: calc(100% - 300px); /* Adjust max-width */
+            margin-left: 270px;
+            max-width: calc(100% - 300px);
         }
 
         .search-bar:hover {
-            transform: translateY(-3px); /* Slight lift on hover */
+            transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
         }
 
@@ -187,28 +180,26 @@
             margin-right: 10px;
         }
 
-        /* Main Content Area */
         .content {
-            margin-left: 270px; /* Offset for navbar */
+            margin-left: 270px;
             padding: 20px;
-            flex-grow: 1; /* Allows content to take available space */
+            flex-grow: 1;
             z-index: 5;
         }
 
-        /* Card Styles */
         .card {
             background: var(--card-bg);
-            padding: 25px; /* Increased padding */
+            padding: 25px;
             border-radius: var(--border-radius);
-            margin-bottom: 30px; /* Increased bottom margin */
+            margin-bottom: 30px;
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
-            overflow: hidden; /* For pseudo-element glow */
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-5px); /* Lift effect */
+            transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
         }
 
@@ -232,7 +223,7 @@
         }
 
         .card > * {
-            position: relative; /* Ensure content is above pseudo-element */
+            position: relative;
             z-index: 1;
         }
 
@@ -243,7 +234,6 @@
             font-weight: 700;
         }
 
-        /* Digital Clock */
         #clock {
             font-size: 3em;
             font-weight: bold;
@@ -252,7 +242,6 @@
             text-shadow: 0 0 10px var(--accent-color);
         }
 
-        /* Calendar */
         .calendar table {
             width: 100%;
             border-collapse: collapse;
@@ -262,9 +251,9 @@
         .calendar th, .calendar td {
             padding: 12px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Softer border */
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
-            border-radius: 4px; /* Small rounded corners for cells */
+            border-radius: 4px;
         }
 
         .calendar th {
@@ -275,14 +264,13 @@
         .calendar td:hover {
             background: var(--accent-color);
             color: var(--text-color);
-            transform: scale(1.05); /* Slight scale */
+            transform: scale(1.05);
             cursor: pointer;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
 
-        /* To-Do List */
         .todo input[type="text"] {
-            width: calc(100% - 120px); /* Adjust width for button */
+            width: calc(100% - 120px);
             margin-right: 10px;
         }
 
@@ -309,7 +297,7 @@
         }
 
         .todo li button {
-            background: #dc3545; /* Red for delete */
+            background: #dc3545;
             padding: 6px 12px;
             font-size: 0.9em;
             border-radius: 6px;
@@ -319,10 +307,9 @@
         .todo li button:hover {
             opacity: 1;
             transform: scale(1.05);
-            box-shadow: none; /* No shadow on small buttons */
+            box-shadow: none;
         }
 
-        /* Form Inputs & Buttons (General) */
         input[type="text"],
         input[type="number"],
         input[type="email"],
@@ -336,12 +323,12 @@
             color: var(--text-color);
             border-radius: 8px;
             transition: var(--transition);
-            width: calc(100% - 24px); /* Account for padding */
-            box-sizing: border-box; /* Include padding in width */
+            width: calc(100% - 24px);
+            box-sizing: border-box;
         }
 
         input[type="file"] {
-            padding: 12px 0; /* Adjust padding for file input */
+            padding: 12px 0;
             margin: 8px 0;
             color: var(--text-color);
             width: 100%;
@@ -368,12 +355,11 @@
         }
 
         button:hover {
-            transform: scale(1.05); /* Slightly less dramatic for general buttons */
+            transform: scale(1.05);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
-            background-color: color-mix(in srgb, var(--accent-color) 90%, var(--text-color)); /* Slightly lighter on hover */
+            background-color: color-mix(in srgb, var(--accent-color) 90%, var(--text-color));
         }
 
-        /* CGPA/GPA Converter */
         #cgpa-result {
             margin-top: 15px;
             font-size: 1.1em;
@@ -381,7 +367,6 @@
             color: var(--accent-color);
         }
 
-        /* Logical Calculator */
         #calc-result {
             margin-top: 15px;
             font-size: 1.1em;
@@ -389,10 +374,9 @@
             color: var(--accent-color);
         }
 
-        /* Student Information System */
         .student-info form {
             display: grid;
-            grid-template-columns: 1fr; /* Single column by default */
+            grid-template-columns: 1fr;
             gap: 15px;
         }
 
@@ -407,7 +391,7 @@
         #student-list .card {
             margin-top: 20px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.05); /* Lighter background for individual student cards */
+            background: rgba(255, 255, 255, 0.05);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
@@ -433,16 +417,15 @@
             font-size: 0.9em;
         }
 
-        /* Drive Links */
         .drive-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px; /* Spacing between links */
+            gap: 15px;
         }
 
         .drive-links a {
-            flex: 1 1 auto; /* Allow items to grow and shrink */
-            min-width: 150px; /* Minimum width for each link */
+            flex: 1 1 auto;
+            min-width: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -462,7 +445,6 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
         }
 
-        /* Transport Schedule */
         #schedule-list ul {
             list-style: none;
             padding: 0;
@@ -499,7 +481,6 @@
             box-shadow: none;
         }
 
-        /* Chatbot */
         #chat-output {
             background: rgba(255, 255, 255, 0.05);
             padding: 15px;
@@ -519,14 +500,13 @@
             color: var(--accent-color);
         }
 
-        /* Footer Styles */
         .footer {
             background: var(--card-bg);
             padding: 20px;
             text-align: center;
-            margin-top: auto; /* Pushes footer to the bottom */
+            margin-top: auto;
             box-shadow: var(--shadow);
-            border-radius: var(--border-radius) var(--border-radius) 0 0; /* Rounded on top side */
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
         }
 
         .footer a {
@@ -534,7 +514,7 @@
             margin: 0 15px;
             font-size: 1.8em;
             transition: var(--transition);
-            display: inline-block; /* For transform */
+            display: inline-block;
         }
 
         .footer a:hover {
@@ -542,34 +522,33 @@
             color: var(--accent-color);
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .navbar {
                 width: 100%;
                 height: 100%;
-                transform: translateX(-100%); /* Hidden by default */
+                transform: translateX(-100%);
                 border-radius: 0;
-                padding-top: 60px; /* Space for toggle button */
+                padding-top: 60px;
                 box-sizing: border-box;
             }
 
             .navbar.active {
-                transform: translateX(0); /* Show navbar */
+                transform: translateX(0);
             }
 
             .navbar-toggle {
-                display: block; /* Show toggle button on mobile */
+                display: block;
             }
 
             .search-bar {
-                margin-left: 20px; /* Reset margin */
-                max-width: calc(100% - 40px); /* Full width minus padding */
-                margin-top: 70px; /* Below toggle button */
+                margin-left: 20px;
+                max-width: calc(100% - 40px);
+                margin-top: 70px;
             }
 
             .content {
-                margin-left: 0; /* Reset margin */
-                padding-top: 20px; /* Ensure content starts below search bar */
+                margin-left: 0;
+                padding-top: 20px;
             }
 
             .theme-toggle {
@@ -578,7 +557,7 @@
             }
 
             .student-info form {
-                grid-template-columns: 1fr; /* Single column on small screens */
+                grid-template-columns: 1fr;
             }
         }
 
@@ -596,8 +575,8 @@
             }
 
             .drive-links a {
-                min-width: unset; /* Allow smaller width for very small screens */
-                flex: 1 1 100%; /* Stack vertically */
+                min-width: unset;
+                flex: 1 1 100%;
             }
 
             #clock {
@@ -607,20 +586,13 @@
     </style>
 </head>
 <body>
-    <!-- Canvas for Three.js Particle Background -->
     <canvas id="particle-bg"></canvas>
-
-    <!-- Navbar Toggle Button (for mobile) -->
     <button class="navbar-toggle" onclick="toggleNavbar()">
         <i class="fas fa-bars"></i>
     </button>
-
-    <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()">
         <i class="fas fa-moon"></i>
     </button>
-
-    <!-- Sidebar Navigation -->
     <div class="navbar" id="navbar">
         <ul>
             <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
@@ -632,27 +604,20 @@
             <li><a href="#chat"><i class="fas fa-comments"></i> Chat & Feedback</a></li>
         </ul>
     </div>
-
-    <!-- Search Bar -->
     <div class="search-bar">
         <i class="fas fa-search"></i>
         <input type="text" id="search" placeholder="Search study materials...">
     </div>
-
-    <!-- Main Content Area -->
     <div class="content">
-        <!-- Digital Clock Section -->
         <div id="home" class="card clock">
             <h2>Digital Clock</h2>
             <div id="clock">00:00:00</div>
         </div>
-
-        <!-- Study Resources Section -->
         <div id="resources" class="card drive-links">
             <h2>Study Resources</h2>
-            <a href=" https://drive.google.com/drive/folders/10bIQkDJgJB4onZY8WjBPt7I5b_RTuCGl?usp=drive_link " target="_blank">1st_Semester</a>
-            <a href="https://drive.google.com/drive/folders/1BvNe57fF9I26CEEK8dLnDO_GuxLi05D0?usp=drive_link" target="_blank">2nd_Semester</a>
-            <a href="https://drive.google.com/drive/folders/1C04iTCiwpgm9rF6b0dsUkeS6HOJ86OUU?usp=drive_link" target="_blank">3rd_Semester</a>
+            <a href="https://drive.google.com/drive/folders/10bIQkDJgJB4onZY8WjBPt7I5b_RTuCGl?usp=drive_link" target="_blank">1st_Semester</a>
+            <a href="https://drive.google.com/drive/folders/10cf5ZEo1oD3ftV6sUorAF4FbSZl9xfi3?usp=drive_link" target="_blank">2nd_Semester</a>
+            <a href="https://drive.google.com/drive/folders/1u7ti-ZIkk43eUNlV8omaHiuPEhTZyc47?usp=drive_link" target="_blank">3rd_Semester</a>
             <a href="https://drive.google.com/drive/folders/1C2K6fytqy2YubYA2LP1eZQoEWqgPO-Ma?usp=drive_link" target="_blank">4th_Semester</a>
             <a href="https://drive.google.com/drive/folders/1C3JcpkKGeTs_a-Kc6dOXZzOwvSJwX33r?usp=drive_link" target="_blank">5th_Semester</a>
             <a href="https://drive.google.com/drive/folders/1C3bXhsefU1nFQ6v1--q6_zpwfJGZ1Wez?usp=drive_link" target="_blank">6th_Semester</a>
@@ -662,8 +627,6 @@
             <a href="https://drive.google.com/drive/folders/1YTn9GOdZQBCuZ4bxprZfG1j-5gd2xlcA?usp=drive_link" target="_blank">Extra</a>
             <a href="https://drive.google.com/drive/folders/1oPDgvFlupSkAUzFv_ByEE3xYzYjVzAKN?usp=drive_link" target="_blank">Viva</a>
         </div>
-
-        <!-- Calendar and To-Do List Section -->
         <div class="card calendar">
             <h2>Calendar</h2>
             <div id="calendar"></div>
@@ -674,24 +637,18 @@
                 <ul id="todo-list"></ul>
             </div>
         </div>
-
-        <!-- CGPA/GPA Converter Section -->
         <div id="cgpa" class="card cgpa-converter">
             <h2>CGPA/GPA Converter</h2>
             <input type="number" id="grade" placeholder="Enter grade (0-100)">
             <button onclick="convertGrade()">Convert</button>
             <div id="cgpa-result"></div>
         </div>
-
-        <!-- Logical Calculator Section -->
         <div id="calculator" class="card calculator">
             <h2>Logical Calculator</h2>
             <input type="text" id="calc-input" placeholder="Enter expression (e.g., 2 + 2 * 3)">
             <button onclick="calculate()">Calculate</button>
             <div id="calc-result"></div>
         </div>
-
-        <!-- Student Information System Section -->
         <div id="students" class="card student-info">
             <h2>Student Information System</h2>
             <form id="student-form">
@@ -713,16 +670,12 @@
             </form>
             <div id="student-list"></div>
         </div>
-
-        <!-- Transport Schedule Section -->
         <div id="transport" class="card transport-schedule">
             <h2>Transport Schedule</h2>
             <input type="file" id="schedule-file" accept=".json,.txt">
             <button onclick="uploadSchedule()">Upload Schedule</button>
             <div id="schedule-list"></div>
         </div>
-
-        <!-- Feedback & Chat Section -->
         <div id="chat" class="card chatbot">
             <h2>Feedback & Chat</h2>
             <textarea id="chat-input" placeholder="Type your message..."></textarea>
@@ -730,15 +683,12 @@
             <div id="chat-output"></div>
         </div>
     </div>
-
-    <!-- Footer -->
     <div class="footer">
         <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
         <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
         <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
         <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
     </div>
-
     <script>
         // --- Three.js Particle Background ---
         const scene = new THREE.Scene();
@@ -749,18 +699,16 @@
 
         const particlesGeometry = new THREE.BufferGeometry();
         const particleCount = 1000;
-        const posArray = new Float32Array(particleCount * 3); // x, y, z for each particle
+        const posArray = new Float32Array(particleCount * 3);
 
-        // Populate particle positions randomly
         for (let i = 0; i < particleCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 100; // Random position between -50 and 50
+            posArray[i] = (Math.random() - 0.5) * 100;
         }
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
-        // Create particle material (white points)
         const particlesMaterial = new THREE.PointsMaterial({
             color: 0xffffff,
-            size: 0.2, // Size of each particle
+            size: 0.2,
             transparent: true,
             opacity: 0.7
         });
@@ -768,20 +716,17 @@
         const particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particleSystem);
 
-        // Animation loop for particles
         function animateParticles() {
-            requestAnimationFrame(animateParticles); // Request next frame
-            particleSystem.rotation.y += 0.0005; // Rotate particles slowly
+            requestAnimationFrame(animateParticles);
+            particleSystem.rotation.y += 0.0005;
             particleSystem.rotation.x += 0.0002;
-            renderer.render(scene, camera); // Render the scene
+            renderer.render(scene, camera);
         }
 
-        // Start particle animation after window loads
         window.onload = function() {
             animateParticles();
         };
 
-        // Handle window resize for Three.js canvas
         window.addEventListener('resize', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
             camera.aspect = window.innerWidth / window.innerHeight;
@@ -791,41 +736,36 @@
         // --- Theme Toggle ---
         function toggleTheme() {
             const body = document.body;
-            // Toggle between 'dark-red' and default (no data-theme attribute, which defaults to root variables)
             body.dataset.theme = body.dataset.theme === 'dark-red' ? '' : 'dark-red';
         }
 
         // --- Navbar Toggle for Mobile ---
         function toggleNavbar() {
             const navbar = document.getElementById('navbar');
-            navbar.classList.toggle('active'); // Toggles 'active' class for showing/hiding
+            navbar.classList.toggle('active');
         }
 
         // --- Digital Clock ---
         function updateClock() {
             const clockElement = document.getElementById('clock');
             const now = new Date();
-            // Format time as HH:MM:SS
             clockElement.textContent = now.toLocaleTimeString('en-US', {
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit',
-                hour12: false // Use 24-hour format
+                hour12: false
             });
         }
-        setInterval(updateClock, 1000); // Update every second
-        updateClock(); // Initial call to display immediately
+        setInterval(updateClock, 1000);
+        updateClock();
 
         // --- Calendar ---
         function generateCalendar() {
             const calendarElement = document.getElementById('calendar');
             const now = new Date();
             const year = now.getFullYear();
-            const month = now.getMonth(); // 0-indexed month
-
-            // Get first day of the month (0 = Sunday, 6 = Saturday)
+            const month = now.getMonth();
             const firstDay = new Date(year, month, 1).getDay();
-            // Get number of days in the current month
             const daysInMonth = new Date(year, month + 1, 0).getDate();
 
             let html = `
@@ -842,14 +782,11 @@
                         <tr>
             `;
 
-            // Add empty cells for days before the 1st of the month
             for (let i = 0; i < firstDay; i++) {
                 html += '<td></td>';
             }
 
-            // Add days of the month
             for (let day = 1; day <= daysInMonth; day++) {
-                // Start a new row every 7 days (Saturday is the 7th day)
                 if ((day + firstDay - 1) % 7 === 0 && day !== 1) {
                     html += '</tr><tr>';
                 }
@@ -861,26 +798,26 @@
         generateCalendar();
 
         // --- To-Do List ---
-        let todos = []; // Array to store to-do items
+        let todos = [];
 
         function addTodo() {
             const input = document.getElementById('todo-input');
             const taskText = input.value.trim();
             if (taskText) {
-                todos.push(taskText); // Add new task
-                input.value = ''; // Clear input field
-                renderTodos(); // Re-render the list
+                todos.push(taskText);
+                input.value = '';
+                renderTodos();
             }
         }
 
         function deleteTodo(index) {
-            todos.splice(index, 1); // Remove task at specific index
-            renderTodos(); // Re-render the list
+            todos.splice(index, 1);
+            renderTodos();
         }
 
         function renderTodos() {
             const list = document.getElementById('todo-list');
-            list.innerHTML = ''; // Clear current list
+            list.innerHTML = '';
 
             if (todos.length === 0) {
                 list.innerHTML = '<li style="text-align: center; opacity: 0.7;">No tasks added yet.</li>';
@@ -896,7 +833,7 @@
                 list.appendChild(li);
             });
         }
-        renderTodos(); // Initial render for empty list message
+        renderTodos();
 
         // --- CGPA/GPA Converter ---
         function convertGrade() {
@@ -906,7 +843,7 @@
 
             if (isNaN(grade) || grade < 0 || grade > 100) {
                 resultElement.textContent = 'Please enter a valid grade (0-100).';
-                resultElement.style.color = '#dc3545'; // Error color
+                resultElement.style.color = '#dc3545';
                 return;
             }
 
@@ -923,7 +860,7 @@
             else { gpa = 0.0; letter = 'F'; }
 
             resultElement.textContent = `GPA: ${gpa.toFixed(2)}, Letter Grade: ${letter}`;
-            resultElement.style.color = 'var(--accent-color)'; // Reset to accent color
+            resultElement.style.color = 'var(--accent-color)';
         }
 
         // --- Logical Calculator ---
@@ -933,9 +870,6 @@
             const expression = inputElement.value;
 
             try {
-                // WARNING: Using eval() can be a security risk if the input is not controlled.
-                // For a simple client-side calculator with trusted input, it might be acceptable,
-                // but for production apps, consider a safer math expression parser library.
                 const result = eval(expression);
                 if (isNaN(result) || !isFinite(result)) {
                     throw new Error('Invalid calculation result.');
@@ -944,21 +878,21 @@
                 resultElement.style.color = 'var(--accent-color)';
             } catch (error) {
                 resultElement.textContent = 'Error: Invalid expression or calculation.';
-                resultElement.style.color = '#dc3545'; // Error color
+                resultElement.style.color = '#dc3545';
                 console.error("Calculator error:", error);
             }
         }
 
         // --- Student Information System ---
-        let students = []; // Array to store student objects
+        let students = [];
 
         document.getElementById('student-form').addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent default form submission
+            e.preventDefault();
 
             const formData = new FormData(e.target);
             const student = {};
             formData.forEach((value, key) => {
-                if (key !== 'image') { // Exclude file input from direct assignment
+                if (key !== 'image') {
                     student[key] = value;
                 }
             });
@@ -967,26 +901,26 @@
             if (imageFile && imageFile.name) {
                 const reader = new FileReader();
                 reader.onload = () => {
-                    student.imageData = reader.result; // Store base64 image data
+                    student.imageData = reader.result;
                     students.push(student);
                     renderStudents();
                 };
-                reader.readAsDataURL(imageFile); // Read file as base64
+                reader.readAsDataURL(imageFile);
             } else {
                 students.push(student);
                 renderStudents();
             }
-            e.target.reset(); // Clear form fields
+            e.target.reset();
         });
 
         function deleteStudent(index) {
-            students.splice(index, 1); // Remove student at specific index
-            renderStudents(); // Re-render the list
+            students.splice(index, 1);
+            renderStudents();
         }
 
         function renderStudents() {
             const list = document.getElementById('student-list');
-            list.innerHTML = ''; // Clear current list
+            list.innerHTML = '';
 
             if (students.length === 0) {
                 list.innerHTML = '<p style="text-align: center; opacity: 0.7;">No student information added yet.</p>';
@@ -995,7 +929,7 @@
 
             students.forEach((student, index) => {
                 const div = document.createElement('div');
-                div.className = 'card student-item'; // Add a class for specific styling if needed
+                div.className = 'card student-item';
                 div.innerHTML = `
                     <h3>${student.name || 'N/A'} (${student.id || 'N/A'})</h3>
                     ${student.imageData ? `<img src="${student.imageData}" alt="Student Image">` : ''}
@@ -1013,10 +947,10 @@
                 list.appendChild(div);
             });
         }
-        renderStudents(); // Initial render for empty list message
+        renderStudents();
 
         // --- Transport Schedule ---
-        let schedules = []; // Array to store schedule items
+        let schedules = [];
 
         function uploadSchedule() {
             const fileInput = document.getElementById('schedule-file');
@@ -1030,19 +964,15 @@
             const reader = new FileReader();
             reader.onload = (e) => {
                 try {
-                    // Attempt to parse as JSON
                     const data = JSON.parse(e.target.result);
-                    schedules = Array.isArray(data) ? data : [data]; // Ensure it's an array
+                    schedules = Array.isArray(data) ? data : [data];
                 } catch (jsonError) {
-                    // If JSON parsing fails, treat as plain text, split by newlines
                     console.warn("Could not parse file as JSON, treating as plain text.", jsonError);
                     schedules = e.target.result.split('\n').filter(line => line.trim() !== '').map(line => ({ text: line.trim() }));
                 }
                 renderSchedules();
-                fileInput.value = ''; // Clear file input
+                fileInput.value = '';
             };
-
-            // Read the file as text regardless of type, then attempt JSON parsing
             reader.readAsText(file);
         }
 
@@ -1053,7 +983,7 @@
 
         function renderSchedules() {
             const list = document.getElementById('schedule-list');
-            list.innerHTML = ''; // Clear current list
+            list.innerHTML = '';
 
             if (schedules.length === 0) {
                 list.innerHTML = '<p style="text-align: center; opacity: 0.7;">No transport schedules uploaded yet.</p>';
@@ -1062,7 +992,6 @@
 
             schedules.forEach((schedule, index) => {
                 const li = document.createElement('li');
-                // Display based on whether it's a structured object or plain text
                 const displayText = schedule.text || `Route: ${schedule.route || 'N/A'}, Time: ${schedule.time || 'N/A'}, Date: ${schedule.date || 'N/A'}`;
                 li.innerHTML = `
                     <span>${displayText}</span>
@@ -1071,9 +1000,9 @@
                 list.appendChild(li);
             });
         }
-        renderSchedules(); // Initial render for empty list message
+        renderSchedules();
 
-        // --- Chatbot (Simple Echo/Predefined Responses) ---
+        // --- Chatbot ---
         function sendMessage() {
             const input = document.getElementById('chat-input');
             const output = document.getElementById('chat-output');
@@ -1081,14 +1010,10 @@
 
             if (!message) return;
 
-            // Display user's message
             output.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
-            input.value = ''; // Clear input
-
-            // Scroll to bottom of chat output
+            input.value = '';
             output.scrollTop = output.scrollHeight;
 
-            // Simple predefined bot responses
             const responses = [
                 'Thanks for your feedback! We appreciate it.',
                 'I’ll pass that along to the development team!',
@@ -1098,23 +1023,20 @@
             ];
             const botReply = responses[Math.floor(Math.random() * responses.length)];
 
-            // Simulate bot typing delay
             setTimeout(() => {
                 output.innerHTML += `<p><strong>Bot:</strong> ${botReply}</p>`;
-                output.scrollTop = output.scrollHeight; // Scroll again after bot reply
-            }, 800); // 0.8 second delay
+                output.scrollTop = output.scrollHeight;
+            }, 800);
         }
 
         // --- Search Functionality ---
         document.getElementById('search').addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
-            // Select all cards in the content area
             document.querySelectorAll('.content .card').forEach(card => {
-                // Check if card's text content includes the query
                 if (card.textContent.toLowerCase().includes(query)) {
-                    card.style.display = 'block'; // Show card
+                    card.style.display = 'block';
                 } else {
-                    card.style.display = 'none'; // Hide card
+                    card.style.display = 'none';
                 }
             });
         });
@@ -1122,19 +1044,17 @@
         // --- Smooth Scrolling for Navbar Links ---
         document.querySelectorAll('.navbar a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault(); // Prevent default jump
+                e.preventDefault();
 
                 const targetId = this.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
 
                 if (targetElement) {
-                    // Close navbar on mobile after clicking a link
                     const navbar = document.getElementById('navbar');
                     if (navbar.classList.contains('active')) {
                         navbar.classList.remove('active');
                     }
 
-                    // Scroll smoothly to the target element
                     targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
