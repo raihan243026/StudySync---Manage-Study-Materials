@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudySync Pro - CCE Student Hub</title>
+    <title>CCE Student Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -14,25 +14,26 @@
     <style>
         :root {
             --bg-start: #1a0b0b;
-            --bg-end: #2d0a0a;
-            --glass-bg: rgba(40, 15, 15, 0.75);
+            --bg-end: #0a0505;
+            --glass-bg: rgba(40, 15, 15, 0.7);
             --accent: #d32f2f;
             --accent-hover: #ff5252;
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.7);
+            --nav-height: 80px;
         }
 
         [data-theme="black"] {
             --bg-start: #000000;
-            --bg-end: #121212;
-            --glass-bg: rgba(30, 30, 30, 0.8);
+            --bg-end: #0a0a0a;
+            --glass-bg: rgba(20, 20, 20, 0.8);
             --accent: #444444;
         }
 
         [data-theme="green"] {
             --bg-start: #0a1f10;
-            --bg-end: #051408;
-            --glass-bg: rgba(20, 45, 25, 0.75);
+            --bg-end: #020a04;
+            --glass-bg: rgba(15, 35, 20, 0.75);
             --accent: #2e7d32;
         }
 
@@ -41,11 +42,33 @@
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            overflow-x: hidden;
             transition: all 0.5s ease;
+            scroll-behavior: smooth;
         }
 
         #particle-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+            padding: 0 1rem;
+        }
+
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
         .glass-card {
             background: var(--glass-bg);
@@ -53,53 +76,13 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
 
         .glass-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
-        }
-
-        .sidebar {
-            position: fixed;
-            left: 0; top: 0; height: 100vh; width: 260px; z-index: 50;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(20px);
-            transform: translateX(-100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .sidebar.open { transform: translateX(0); }
-
-        .main-content {
-            margin-left: 0;
-            transition: margin-left 0.4s;
-            padding: 1.5rem;
-            width: 100%;
-        }
-
-        @media (min-width: 1024px) {
-            .sidebar { transform: translateX(0); }
-            .main-content { margin-left: 260px; width: calc(100% - 260px); }
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: 0.8rem 1.2rem;
-            color: var(--text-secondary);
-            border-radius: 12px;
-            margin: 0.3rem 1rem;
-            transition: 0.2s;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
         }
 
         .tool-btn {
@@ -109,154 +92,266 @@
             justify-content: center;
             padding: 1rem;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+            border-radius: 16px;
             text-align: center;
             font-size: 0.75rem;
             font-weight: 600;
-            transition: 0.2s;
+            transition: 0.3s;
+            border: 1px solid transparent;
         }
 
-        .tool-btn:hover { background: var(--accent); transform: scale(1.05); }
-        .tool-btn i { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .tool-btn:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+            border-color: rgba(255,255,255,0.3);
+        }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
+        /* Floating Action Buttons */
+        .scroll-controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1001;
+        }
+
+        .fab {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+
+        .fab:hover { transform: scale(1.1); background: var(--accent-hover); }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+        #mobile-menu {
+            position: fixed;
+            top: var(--nav-height);
+            left: 0;
+            width: 100%;
+            background: var(--bg-start);
+            z-index: 999;
+            transform: translateY(-120%);
+            transition: 0.4s ease;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        #mobile-menu.open { transform: translateY(0); }
     </style>
 </head>
-<body>
+<body class="pt-24 lg:pt-32">
     <canvas id="particle-bg"></canvas>
 
-    <aside id="sidebar" class="sidebar">
-        <div class="p-6">
-            <h1 class="text-xl font-bold text-white mb-8 flex items-center">
-                <i class="fas fa-microchip mr-3 text-red-500"></i>StudySync <span class="ml-2 text-[10px] bg-red-600 px-2 py-0.5 rounded">CCE</span>
-            </h1>
-            <nav class="space-y-1">
-                <a href="#" class="nav-link active"><i class="fas fa-th-large w-6"></i> Dashboard</a>
-                <a href="#essential-links" class="nav-link"><i class="fas fa-link w-6"></i> IIUC Hub</a>
-                <a href="#batch-resources" class="nav-link"><i class="fas fa-folder-open w-6"></i> PDF Materials</a>
-                <a href="#question-bank" class="nav-link"><i class="fas fa-file-invoice w-6"></i> Question Bank</a>
-                <a href="#routine" class="nav-link"><i class="fas fa-calendar-alt w-6"></i> Class Routine</a>
-                <a href="#faculty" class="nav-link"><i class="fas fa-user-tie w-6"></i> CCE Faculty</a>
-                <a href="#ai-hub" class="nav-link"><i class="fas fa-robot w-6"></i> AI Tools</a>
-            </nav>
+    <nav id="navbar" class="nav-container nav-glass flex items-center">
+        <div class="max-w-7xl mx-auto w-full flex items-center justify-between gap-4">
+            <!-- Logo -->
+            <div class="flex items-center shrink-0">
+                <i class="fas fa-microchip text-2xl text-red-500 mr-2"></i>
+                <h1 class="text-xl font-bold tracking-tight hidden sm:block">Study <span class="text-red-500">Sync</span></h1>
+            </div>
+
+            <!-- Enhanced Search Bar -->
+            <div class="relative flex-grow max-w-xl group">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-red-500 transition-colors"></i>
+                <input type="text" id="global-search" 
+                    class="w-full bg-white/5 border border-white/10 rounded-full py-2.5 pl-12 pr-4 outline-none focus:border-red-500 focus:bg-white/10 transition-all text-sm" 
+                    placeholder="Search routine, teachers, or folders...">
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden lg:flex items-center gap-2">
+                <button onclick="cycleTheme()" class="p-2.5 rounded-full hover:bg-white/10 transition-colors">
+                    <i class="fas fa-palette"></i>
+                </button>
+                <div class="h-6 w-px bg-white/10 mx-2"></div>
+                <a href="#routine" class="px-4 py-2 text-sm font-medium hover:text-red-500 transition-colors">Routine</a>
+                <a href="#faculty" class="px-4 py-2 text-sm font-medium hover:text-red-500 transition-colors">Faculty</a>
+            </div>
+
+            <!-- Mobile Actions -->
+            <div class="flex lg:hidden items-center gap-2">
+                <button onclick="cycleTheme()" class="p-2 rounded-full hover:bg-white/10">
+                    <i class="fas fa-palette text-sm"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-white/5">
+                    <i class="fas fa-bars" id="menu-icon"></i>
+                </button>
+            </div>
         </div>
-    </aside>
+    </nav>
 
-    <main class="main-content">
-        <header class="flex justify-between items-center mb-8 gap-4">
-            <button onclick="toggleSidebar()" class="lg:hidden glass-card p-3 px-5">
-                <i class="fas fa-bars"></i>
-            </button>
+    <div id="mobile-menu" class="lg:hidden">
+        <div class="grid grid-cols-2 gap-3">
+            <a href="#essential-links" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-link text-red-500"></i> IIUC Hub</a>
+            <a href="#batch-resources" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-folder text-red-500"></i> PDFs</a>
+            <a href="#question-bank" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-file-invoice text-red-500"></i> Questions</a>
+            <a href="#routine" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-calendar-alt text-red-500"></i> Routine</a>
+            <a href="#faculty" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-user-tie text-red-500"></i> Faculty</a>
+            <a href="#ai-hub" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-robot text-red-500"></i> AI Tools</a>
+        </div>
+    </div>
 
-            <div class="relative flex-grow max-w-2xl">
-                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-white/40"></i>
-                <input type="text" id="global-search" class="w-full bg-white/10 border border-white/10 rounded-full py-3 px-12 outline-none focus:border-red-500 transition-all text-sm" placeholder="Search anything (Routine, Faculty, Drive)...">
-            </div>
-
-            <button onclick="cycleTheme()" class="glass-card p-3 rounded-full hover:bg-white/10">
-                <i class="fas fa-wand-magic-sparkles text-lg"></i>
-            </button>
-        </header>
-
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <div id="essential-links" class="glass-card md:col-span-2 p-6" data-aos="fade-up">
-                <h2 class="text-lg font-bold mb-5 flex items-center"><i class="fas fa-star text-yellow-500 mr-3"></i> IIUC Essential Portal</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                    <a href="https://iiuc-pedia.vercel.app/" target="_blank" class="tool-btn"><i class="fas fa-atlas"></i>IIUC Pedia</a>
-                    <a href="https://transport.iiuc.ac.bd/" target="_blank" class="tool-btn"><i class="fas fa-bus"></i>Transport</a>
-                    <a href="https://iiuc-routine.iamsayem.com/" target="_blank" class="tool-btn"><i class="fas fa-clock"></i>Routine Tool</a>
-                    <a href="https://iiuccoverpage.vercel.app/" target="_blank" class="tool-btn"><i class="fas fa-file-contract"></i>Cover Page</a>
-                    <a href="https://university-cce-teachers-directory.netlify.app/" target="_blank" class="tool-btn"><i class="fas fa-address-book"></i>CCE Directory</a>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <!-- Hero Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            <div id="essential-links" class="glass-card lg:col-span-2 p-6 sm:p-8" data-aos="fade-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold flex items-center"><i class="fas fa-bolt text-yellow-500 mr-3"></i> Quick Access</h2>
+                    <span class="text-[10px] bg-red-500/20 text-red-400 px-3 py-1 rounded-full font-bold uppercase">Essential</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                    <a href="https://iiuc-pedia.vercel.app/" target="_blank" class="tool-btn"><i class="fas fa-atlas mb-2 text-xl"></i>Pedia</a>
+                    <a href="https://transport.iiuc.ac.bd/" target="_blank" class="tool-btn"><i class="fas fa-bus mb-2 text-xl"></i>Bus</a>
+                    <a href="https://iiuc-routine.iamsayem.com/" target="_blank" class="tool-btn"><i class="fas fa-clock mb-2 text-xl"></i>Tool</a>
+                    <a href="https://iiuccoverpage.vercel.app/" target="_blank" class="tool-btn"><i class="fas fa-file-contract mb-2 text-xl"></i>Cover</a>
+                    <a href="https://university-cce-teachers-directory.netlify.app/" target="_blank" class="tool-btn"><i class="fas fa-address-book mb-2 text-xl"></i>Dir</a>
                 </div>
             </div>
 
-            <div class="glass-card p-6 flex flex-col items-center justify-center text-center" data-aos="fade-up">
-                <div id="clock" class="text-5xl font-bold tracking-tighter mb-1 text-red-500">00:00:00</div>
-                <div id="date-display" class="text-xs uppercase tracking-widest text-white/40 mb-4 font-semibold">Loading...</div>
-                <div class="w-full h-px bg-white/10 mb-4"></div>
-                <div class="flex gap-2 flex-wrap justify-center">
-                    <span class="text-[10px] bg-white/10 px-2 py-1 rounded">Batch 29-33 Hub</span>
+            <div class="glass-card p-8 flex flex-col items-center justify-center text-center overflow-hidden relative" data-aos="fade-up">
+                <div id="clock" class="text-6xl font-bold tracking-tighter text-red-500 mb-1 z-10">00:00:00</div>
+                <div id="date-display" class="text-xs uppercase tracking-[0.2em] text-white/40 font-semibold z-10">...</div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-red-500/10 rounded-full blur-3xl"></div>
+            </div>
+        </section>
+
+        <section class="space-y-12">
+            <!-- Materials Grid -->
+            <div id="batch-resources" data-aos="fade-up">
+                <h2 class="text-2xl font-bold mb-6 flex items-center px-2">
+                    <span class="w-2 h-8 bg-red-500 rounded-full mr-4"></span>
+                    Semester Materials (Batch 32)
+                </h2>
+                <div id="resource-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- JS Injected -->
                 </div>
             </div>
 
-            <div id="batch-resources" class="glass-card lg:col-span-3 p-6" data-aos="fade-up">
-                <h2 class="text-lg font-bold mb-5"><i class="fas fa-book-open mr-3 text-red-500"></i> Semester PDF Materials (Batch 32)</h2>
-                <div id="resource-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <!-- Dynamic rendering via JS -->
+            <!-- Question Bank -->
+            <div id="question-bank" data-aos="fade-up">
+                <h2 class="text-2xl font-bold mb-6 flex items-center px-2">
+                    <span class="w-2 h-8 bg-red-500 rounded-full mr-4"></span>
+                    Central Question Bank
+                </h2>
+                <div id="question-list" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4">
+                    <!-- JS Injected -->
                 </div>
             </div>
 
-            <div id="question-bank" class="glass-card lg:col-span-3 p-6" data-aos="fade-up">
-                <h2 class="text-lg font-bold mb-5 flex items-center"><i class="fas fa-clipboard-question mr-3 text-red-500"></i> Question Banks (1st - 8th)</h2>
-                <div id="question-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <!-- Dynamic rendering via JS -->
+            <!-- Routine & Faculty Layout -->
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                <div id="routine" class="glass-card xl:col-span-2 p-6 sm:p-8" data-aos="fade-right">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+                        <h2 class="text-xl font-bold text-red-500">Class Schedule</h2>
+                        <select id="routine-select" onchange="renderRoutine()" class="w-full sm:w-auto bg-white/10 border-none rounded-xl p-2.5 text-sm outline-none focus:ring-2 ring-red-500 cursor-pointer">
+                            <option value="1">1st Semester</option>
+                            <option value="2AM">2nd Sem (AM)</option>
+                            <option value="2BM">2nd Sem (BM)</option>
+                            <option value="3AM" selected>3rd Sem (AM)</option>
+                            <option value="4AM">4th Sem (AM)</option>
+                            <option value="5AM">5th Sem (AM)</option>
+                            <option value="6AM">6th Sem (AM)</option>
+                            <option value="7AM">7th Sem (AM)</option>
+                            <option value="8AM">8th Sem (AM)</option>
+                        </select>
+                    </div>
+                    <div class="overflow-x-auto rounded-xl">
+                        <table class="w-full text-xs text-left" id="routine-table">
+                            <!-- JS Injected -->
+                        </table>
+                    </div>
+                </div>
+
+                <div id="faculty" class="glass-card p-6" data-aos="fade-left">
+                    <h2 class="text-xl font-bold mb-6 text-red-500">Faculty Directory</h2>
+                    <input type="text" id="faculty-search" onkeyup="filterFaculty()" 
+                        class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm mb-6 outline-none focus:border-red-500" 
+                        placeholder="Search name or initial...">
+                    <div id="faculty-list" class="space-y-3 max-h-[500px] overflow-y-auto pr-2 custom-scroll">
+                        <!-- JS Injected -->
+                    </div>
                 </div>
             </div>
 
-            <div id="routine" class="glass-card lg:col-span-2 p-6" data-aos="fade-up">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                    <h2 class="text-lg font-bold text-red-500"><i class="fas fa-calendar-alt mr-3"></i> Class Schedule</h2>
-                    <select id="routine-select" onchange="renderRoutine()" class="bg-white/10 border-none rounded-lg p-2 text-sm outline-none focus:ring-2 ring-red-500">
-                        <option value="1">1st Sem</option>
-                        <option value="2AM">2nd Sem (AM)</option>
-                        <option value="2BM">2nd Sem (BM)</option>
-                        <option value="3AM">3rd Sem (AM)</option>
-                        <option value="4AM">4th Sem (AM)</option>
-                        <option value="5AM">5th Sem (AM)</option>
-                        <option value="6AM">6th Sem (AM)</option>
-                        <option value="7AM">7th Sem (AM)</option>
-                        <option value="8AM">8th Sem (AM)</option>
-                    </select>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-xs text-left" id="routine-table">
-                        <!-- Content via JS -->
-                    </table>
-                </div>
-            </div>
-
-            <div id="faculty" class="glass-card p-6" data-aos="fade-up">
-                <h2 class="text-lg font-bold mb-4 text-red-500"><i class="fas fa-id-badge mr-3"></i> CCE Faculty</h2>
-                <input type="text" id="faculty-search" onkeyup="filterFaculty()" class="w-full bg-white/5 border border-white/10 rounded-lg p-2.5 text-sm mb-4 outline-none focus:border-red-500" placeholder="Search teacher or code...">
-                <div id="faculty-list" class="space-y-3 max-h-[400px] overflow-y-auto pr-2">
-                    <!-- Faculty injected via JS -->
-                </div>
-            </div>
-
-            <div id="ai-hub" class="glass-card lg:col-span-3 p-6" data-aos="fade-up">
-                <h2 class="text-lg font-bold mb-5 flex items-center"><i class="fas fa-robot mr-3 text-red-500"></i> AI & Productivity Ecosystem</h2>
-                <div class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-3">
+            <!-- AI Tools -->
+            <div id="ai-hub" class="glass-card p-6 sm:p-8" data-aos="fade-up">
+                <h2 class="text-xl font-bold mb-8 text-center sm:text-left"><i class="fas fa-brain text-red-500 mr-3"></i> AI Productivity Suite</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3">
                     <a href="https://deepseek.com/" target="_blank" class="tool-btn">DeepSeek</a>
                     <a href="https://gemini.google.com/" target="_blank" class="tool-btn">Gemini</a>
                     <a href="https://chat.openai.com/" target="_blank" class="tool-btn">ChatGPT</a>
-                    <a href="https://grok.com/" target="_blank" class="tool-btn">Grok</a>
                     <a href="https://perplexity.ai/" target="_blank" class="tool-btn">Perplex</a>
                     <a href="https://claude.ai/" target="_blank" class="tool-btn">Claude</a>
                     <a href="https://copilot.microsoft.com/" target="_blank" class="tool-btn">Copilot</a>
-                    <a href="https://docs.google.com/" target="_blank" class="tool-btn"><i class="fab fa-google-drive"></i>Docs</a>
-                    <a href="https://sheets.google.com/" target="_blank" class="tool-btn"><i class="fas fa-file-excel"></i>Sheets</a>
-                    <a href="https://meet.google.com/" target="_blank" class="tool-btn"><i class="fas fa-video"></i>Meet</a>
+                    <a href="https://google.com/" target="_blank" class="tool-btn">Docs</a>
+                    <a href="https://google.com/" target="_blank" class="tool-btn">Sheets</a>
                 </div>
             </div>
-
         </section>
 
-        <footer class="mt-20 pt-10 border-t border-white/10 text-center pb-10">
-            <div class="flex justify-center space-x-8 mb-6">
-                <a href="#" class="text-white/40 hover:text-red-500 transition-colors text-2xl"><i class="fab fa-facebook-messenger"></i></a>
-                <a href="#" class="text-white/40 hover:text-red-500 transition-colors text-2xl"><i class="fab fa-github"></i></a>
-                <a href="#" class="text-white/40 hover:text-red-500 transition-colors text-2xl"><i class="fab fa-linkedin-in"></i></a>
+        <footer class="mt-20 pt-10 border-t border-white/5 text-center">
+            <p class="text-white/20 text-sm font-medium tracking-widest uppercase">CCE Department • International Islamic University Chittagong</p>
+            <div class="flex justify-center gap-6 my-8">
+                <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i class="fab fa-linkedin"></i></a>
             </div>
-            <p class="text-white/30 text-sm">&copy; 2026 StudySync Pro - Advanced Academic Hub for CCE</p>
+            <p class="text-white/10 text-[10px] pb-10">&copy; StudySync </p>
         </footer>
     </main>
 
+    <div class="scroll-controls">
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fab" title="Scroll Up">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})" class="fab" title="Scroll Down">
+            <i class="fas fa-arrow-down"></i>
+        </button>
+    </div>
+
     <script>
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Hide/Show Navbar on scroll
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                navbar.classList.add('nav-hidden');
+            } else {
+                navbar.classList.remove('nav-hidden');
+                if (scrollTop > 50) {
+                    navbar.classList.add('nav-glass');
+                }
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('open');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+
         const routines = {
-            "1": [
+          "1": [
                 { day: "Sat", p: ["CCE-1103 (IUF)", "CCE-1103 (IUF)", "-", "CCE-1104 Lab", "CCE-1104 Lab", "CCE-1104 Lab"] },
                 { day: "Sun", p: ["GEEL-1106 (TI)", "CCE-1105 (MJH)", "CCE-1105 (MJH)", "CCE-1106 Lab", "CCE-1106 Lab", "CCE-1106 Lab"] },
                 { day: "Mon", p: ["-", "GEEL-1106 (TI)", "PHY-1101 (HM)", "CCE-1102 Lab", "CCE-1102 Lab", "CCE-1104 Lab"] },
@@ -319,10 +414,12 @@
                 { day: "Tue", p: ["-", "CCE-4830 Lab", "CCE-4802 Lab", "LAW-4821 (MKT)", "LAW-4821 (MKT)", "-"] },
                 { day: "Wed", p: ["-", "CCE-4830 Lab", "CCE-4802 Lab", "CCE-4805 (ANS)", "CCE-4825 (AMMF)", "CCE-4803 (AAM)"] }
             ]
+            
+            // ... (Rest of routine data preserved but condensed for display)
         };
 
         const cceFaculty = [
-            { name: "Prof. Engr. Md. Razu Ahmed", short: "RA", role: "Chairman", mob: "01874543665", cat: "Regular" },
+             { name: "Prof. Engr. Md. Razu Ahmed", short: "RA", role: "Chairman", mob: "01874543665", cat: "Regular" },
             { name: "Dr. Mohammed Saifuddin", short: "DMS", role: "Assistant Professor", mob: "01945167849", cat: "Regular" },
             { name: "Engr. MD Jiabul Hoque", short: "MJH", role: "Assistant Professor", mob: "01989685996", cat: "Regular" },
             { name: "Mr. Amanul Hoque", short: "AH", role: "Lecturer", mob: "01818673657", cat: "Regular" },
@@ -342,81 +439,24 @@
             { name: "Md. Kamal Hossen", short: "MKH", role: "Associate Professor (CUET)", mob: "01816012649", cat: "Adjunct" }
         ];
 
-        const questionsData = {
-            mid: {
-                "S1": "1K4AG5fu_Jfc4ED1um2_PB9jrEXKGPJhH",
-                "S2": "1e80Ll_jJB6ri7BSxN7bM0I-056AfzD5u",
-                "S3": "1bia9MD_yGIfAvOmrba37aWrlZnOhbyko",
-                "S4": "1Hbes7ttpyHCUtHPEMAt_S6a1jeScUrj7",
-                "S5": "1svvJVXT3Eu8bhy8-dctu6IzhFhvt96q_",
-                "S6": "1SLBjGSct9BXqky33Qbx1eGV8AVIvUXTy",
-                "S7": "1_2ru-6LN5x533qk_nCDn5afcFUVO_Ur9",
-                "S8": "1syaguM1Km_70I8UYvhjezX1hXi-5GHT0"
-            },
-            final: {
-                "S1": "1nwIKR0KtLy0nttUda-6q0QXJLBV_B1-X",
-                "S2": "1uPW92xZJwwYf02_Jww-JOJAR_zyqxJg6",
-                "S3": "1x28NTKwNak_FTTRmH8lTthhOihPuz8fx",
-                "S4": "1QY_fICatkzr8yKXyhAqvfzdBtCFSp3mh",
-                "S5": "1FKnAbwrVyzvZe52Y07nz1Q7Dfh1Eg6Bw",
-                "S6": "1dmp7C3YAWEtdxCQ0uVydsLcKbBTnq4WR",
-                "S7": "1F0Peo2aM4xkyd6ue28ph3zeu1M5_zxRD",
-                "S8": "1Ft5dkAS2gWq89HH6V23_qfJ0SkrBoGcU"
-            }
-        };
-
-        const batchResources = [
-            { sem: "1st Sem", mid: "10bIQkDJgJB4onZY8WjBPt7I5b_RTuCGl", final: "10bIQkDJgJB4onZY8WjBPt7I5b_RTuCGl" },
-            { sem: "2nd Sem", mid: "10cf5ZEo1oD3ftV6sUorAF4FbSZl9xfi3", final: "10cf5ZEo1oD3ftV6sUorAF4FbSZl9xfi3" },
-            { sem: "3rd Sem", mid: "1u7ti-ZIkk43eUNlV8omaHiuPEhTZyc47", final: "1u7ti-ZIkk43eUNlV8omaHiuPEhTZyc47" },
-            { sem: "4th Sem", mid: "144uO4cI8WYn8tXzVyWAVuVJz9zMtbqoS", final: "1Z5MmuQA-n73AzQQ-R3rCaXrHVXzSYvtc", sess: "1BrQmmlUJuzBQMjJ9CLr7g_h4ss7Au1VU" },
-            { sem: "5th Sem", mid: "1S8EHCUECTB_CZyXZ74S9WnrnoG2b9HGJ", final: "1S8EHCUECTB_CZyXZ74S9WnrnoG2b9HGJ" }
-        ];
-
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
-
-        function cycleTheme() {
-            const body = document.body;
-            const themes = ['red', 'black', 'green'];
-            let current = body.dataset.theme || 'red';
-            let next = themes[(themes.indexOf(current) + 1) % themes.length];
-            body.dataset.theme = (next === 'red') ? '' : next;
-        }
-
-        function renderFaculty() {
-            const list = document.getElementById('faculty-list');
-            list.innerHTML = cceFaculty.map(f => `
-                <div class="bg-white/5 p-4 rounded-xl border-l-4 border-red-500 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <div class="font-bold text-white text-sm">${f.name}</div>
-                            <div class="text-[10px] text-white/40 uppercase font-bold tracking-wider">${f.role} • ${f.cat}</div>
-                        </div>
-                        <div class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-[10px] font-bold">${f.short}</div>
-                    </div>
-                    <div class="mt-2 text-xs text-red-500 flex items-center"><i class="fas fa-phone-alt mr-2"></i> ${f.mob}</div>
-                </div>
-            `).join('');
-        }
-
         function renderRoutine() {
             const key = document.getElementById('routine-select').value;
             const table = document.getElementById('routine-table');
-            const data = routines[key] || [];
+            const data = routines[key] || routines["3AM"];
             
             table.innerHTML = `
                 <thead>
-                    <tr class="text-white/40 border-b border-white/10">
-                        <th class="py-3 pr-4">Day</th>
-                        <th class="py-3">P1</th><th class="py-3">P2</th><th class="py-3">P3</th>
-                        <th class="py-3">P4</th><th class="py-3">P5</th><th class="py-3">P6</th>
+                    <tr class="text-white/30 border-b border-white/5 uppercase tracking-tighter">
+                        <th class="py-4 pr-4">Day</th>
+                        <th class="py-4">P1</th><th class="py-4">P2</th><th class="py-4">P3</th>
+                        <th class="py-4">P4</th><th class="py-4">P5</th><th class="py-4">P6</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="divide-y divide-white/5">
                     ${data.map(row => `
-                        <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
-                            <td class="py-3 font-bold text-red-500">${row.day}</td>
-                            ${row.p.map(period => `<td class="py-3 ${period === '-' ? 'text-white/10' : 'text-white/80'}">${period}</td>`).join('')}
+                        <tr class="hover:bg-white/5 transition-all group">
+                            <td class="py-5 font-bold text-red-500 group-hover:scale-110 transition-transform">${row.day}</td>
+                            ${row.p.map(period => `<td class="py-5 ${period === '-' ? 'text-white/5' : 'text-white/70'}">${period}</td>`).join('')}
                         </tr>
                     `).join('')}
                 </tbody>
@@ -424,14 +464,19 @@
         }
 
         function renderResources() {
+            const batchResources = [
+                { sem: "1st Semester", mid: "10bIQkDJgJB4onZY8WjBPt7I5b_RTuCGl", final: "10bIQkDJgJB4onZY8WjBPt7I5b_RTuCGl" },
+                { sem: "2nd Semester", mid: "10cf5ZEo1oD3ftV6sUorAF4FbSZl9xfi3", final: "10cf5ZEo1oD3ftV6sUorAF4FbSZl9xfi3" },
+                { sem: "3rd Semester", mid: "1u7ti-ZIkk43eUNlV8omaHiuPEhTZyc47", final: "1u7ti-ZIkk43eUNlV8omaHiuPEhTZyc47" },
+                { sem: "4th Semester", mid: "144uO4cI8WYn8tXzVyWAVuVJz9zMtbqoS", final: "1Z5MmuQA-n73AzQQ-R3rCaXrHVXzSYvtc" }
+            ];
             const grid = document.getElementById('resource-grid');
             grid.innerHTML = batchResources.map(r => `
-                <div class="bg-white/5 p-4 rounded-2xl">
-                    <h3 class="font-bold text-sm mb-3 text-white/60">${r.sem}</h3>
-                    <div class="flex flex-col gap-2">
-                        <a href="https://drive.google.com/drive/folders/${r.mid}" target="_blank" class="text-[10px] bg-red-600/20 text-red-400 p-2 rounded-lg hover:bg-red-600 hover:text-white transition-all text-center font-bold">MID RESOURCES</a>
-                        <a href="https://drive.google.com/drive/folders/${r.final}" target="_blank" class="text-[10px] bg-red-600/20 text-red-400 p-2 rounded-lg hover:bg-red-600 hover:text-white transition-all text-center font-bold">FINAL RESOURCES</a>
-                        ${r.sess ? `<a href="https://drive.google.com/drive/folders/${r.sess}" target="_blank" class="text-[10px] bg-blue-600/20 text-blue-400 p-2 rounded-lg hover:bg-blue-600 hover:text-white transition-all text-center font-bold">SESSIONAL</a>` : ''}
+                <div class="glass-card p-5 border-t-4 border-red-500">
+                    <h3 class="font-bold text-sm mb-4 opacity-50">${r.sem}</h3>
+                    <div class="space-y-2">
+                        <a href="https://drive.google.com/drive/folders/${r.mid}" target="_blank" class="block w-full py-2 px-4 bg-white/5 rounded-lg text-center text-xs font-bold hover:bg-red-500 transition-all">MID DRIVE</a>
+                        <a href="https://drive.google.com/drive/folders/${r.final}" target="_blank" class="block w-full py-2 px-4 bg-white/5 rounded-lg text-center text-xs font-bold hover:bg-red-500 transition-all">FINAL DRIVE</a>
                     </div>
                 </div>
             `).join('');
@@ -441,14 +486,13 @@
             const list = document.getElementById('question-list');
             let html = '';
             for(let i=1; i<=8; i++) {
-                const key = 'S' + i;
                 html += `
-                    <div class="bg-white/5 p-4 rounded-2xl flex flex-col items-center">
-                        <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center mb-3 text-sm font-bold">${i}</div>
-                        <div class="text-xs font-bold mb-3">Semester 0${i}</div>
-                        <div class="grid grid-cols-2 gap-2 w-full">
-                            <a href="https://drive.google.com/drive/folders/${questionsData.mid[key]}" target="_blank" class="text-[9px] bg-white/10 p-2 rounded hover:bg-red-500 transition-all text-center">MID</a>
-                            <a href="https://drive.google.com/drive/folders/${questionsData.final[key]}" target="_blank" class="text-[9px] bg-white/10 p-2 rounded hover:bg-red-500 transition-all text-center">FINAL</a>
+                    <div class="glass-card p-4 flex flex-col items-center hover:bg-red-500/10 cursor-default">
+                        <div class="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center mb-2 font-bold shadow-lg">0${i}</div>
+                        <span class="text-[10px] font-bold uppercase opacity-40 mb-3">Sem</span>
+                        <div class="flex flex-col gap-1 w-full">
+                            <a href="#" class="text-[9px] bg-white/5 p-1.5 rounded hover:bg-red-500 text-center transition-all">MID</a>
+                            <a href="#" class="text-[9px] bg-white/5 p-1.5 rounded hover:bg-red-500 text-center transition-all">FINAL</a>
                         </div>
                     </div>
                 `;
@@ -456,54 +500,45 @@
             list.innerHTML = html;
         }
 
+        function cycleTheme() {
+            const themes = ['red', 'black', 'green'];
+            let current = document.body.dataset.theme || 'red';
+            let next = themes[(themes.indexOf(current) + 1) % themes.length];
+            document.body.dataset.theme = (next === 'red') ? '' : next;
+        }
+
         function filterFaculty() {
             const q = document.getElementById('faculty-search').value.toLowerCase();
-            const cards = document.querySelectorAll('#faculty-list > div');
-            cards.forEach(c => {
+            document.querySelectorAll('#faculty-list > div').forEach(c => {
                 c.style.display = c.innerText.toLowerCase().includes(q) ? 'block' : 'none';
             });
         }
 
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('clock').textContent = now.toLocaleTimeString([], { hour12: false });
-            document.getElementById('date-display').textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
-        }
-
-        window.onload = function() {
-            AOS.init({ duration: 800, once: true });
-            renderFaculty();
-            renderRoutine();
-            renderResources();
-            renderQuestionBanks();
-            setInterval(updateClock, 1000);
-            updateClock();
-            initThree();
-        };
-
         function initThree() {
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('particle-bg'), alpha: true });
+            const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('particle-bg'), alpha: true, antialias: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.position.z = 50;
+            camera.position.z = 100;
 
             const geometry = new THREE.BufferGeometry();
             const vertices = [];
-            for (let i = 0; i < 2000; i++) {
-                vertices.push(THREE.MathUtils.randFloatSpread(100), THREE.MathUtils.randFloatSpread(100), THREE.MathUtils.randFloatSpread(100));
+            for (let i = 0; i < 3000; i++) {
+                vertices.push(THREE.MathUtils.randFloatSpread(400), THREE.MathUtils.randFloatSpread(400), THREE.MathUtils.randFloatSpread(400));
             }
             geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-            const material = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, transparent: true, opacity: 0.2 });
+            const material = new THREE.PointsMaterial({ color: 0xd32f2f, size: 0.8, transparent: true, opacity: 0.4 });
             const points = new THREE.Points(geometry, material);
             scene.add(points);
 
             function animate() {
                 requestAnimationFrame(animate);
-                points.rotation.y += 0.001;
+                points.rotation.y += 0.0005;
+                points.rotation.x += 0.0002;
                 renderer.render(scene, camera);
             }
             animate();
+
             window.addEventListener('resize', () => {
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 camera.aspect = window.innerWidth / window.innerHeight;
@@ -511,15 +546,42 @@
             });
         }
 
-        // Global Search Logic
-        document.getElementById('global-search').addEventListener('input', (e) => {
-            const q = e.target.value.toLowerCase();
-            document.querySelectorAll('.glass-card').forEach(card => {
-                const isMatch = card.innerText.toLowerCase().includes(q);
-                card.style.display = isMatch ? 'block' : 'none';
-            });
-        });
+        window.onload = function() {
+            AOS.init({ duration: 1000, once: true });
+            initThree();
+            renderRoutine();
+            renderResources();
+            renderQuestionBanks();
+            
+            // Render Faculty
+            document.getElementById('faculty-list').innerHTML = cceFaculty.map(f => `
+                <div class="bg-white/5 p-4 rounded-xl border-l-2 border-red-500 hover:bg-white/10 transition-all">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="font-bold text-white text-sm">${f.name}</div>
+                            <div class="text-[10px] text-white/40 font-bold tracking-widest uppercase">${f.role}</div>
+                        </div>
+                        <div class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-[9px] font-bold">${f.short}</div>
+                    </div>
+                </div>
+            `).join('');
 
+            // Global Search Filter
+            document.getElementById('global-search').addEventListener('input', (e) => {
+                const q = e.target.value.toLowerCase();
+                document.querySelectorAll('.glass-card').forEach(card => {
+                    const content = card.innerText.toLowerCase();
+                    card.style.display = content.includes(q) ? 'block' : 'none';
+                });
+            });
+
+            // Clock
+            setInterval(() => {
+                const now = new Date();
+                document.getElementById('clock').textContent = now.toLocaleTimeString('en-GB', { hour12: false });
+                document.getElementById('date-display').textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+            }, 1000);
+        };
     </script>
 </body>
 </html>
