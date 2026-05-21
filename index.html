@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCE Student Hub</title>
+    <title>StudySync Pro - CCE Student Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -161,7 +161,7 @@
             <!-- Logo -->
             <div class="flex items-center shrink-0">
                 <i class="fas fa-microchip text-2xl text-red-500 mr-2"></i>
-                <h1 class="text-xl font-bold tracking-tight hidden sm:block">Study <span class="text-red-500">Sync</span></h1>
+                <h1 class="text-xl font-bold tracking-tight hidden sm:block">StudySync <span class="text-red-500">Pro</span></h1>
             </div>
 
             <!-- Enhanced Search Bar -->
@@ -310,7 +310,7 @@
                 <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i class="fab fa-github"></i></a>
                 <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i class="fab fa-linkedin"></i></a>
             </div>
-            <p class="text-white/10 text-[10px] pb-10">&copy; StudySync </p>
+            <p class="text-white/10 text-[10px] pb-10">&copy; 2026 StudySync Pro Hub. All academic rights reserved.</p>
         </footer>
     </main>
 
@@ -351,7 +351,7 @@
         }
 
         const routines = {
-          "1": [
+            "1": [
                 { day: "Sat", p: ["CCE-1103 (IUF)", "CCE-1103 (IUF)", "-", "CCE-1104 Lab", "CCE-1104 Lab", "CCE-1104 Lab"] },
                 { day: "Sun", p: ["GEEL-1106 (TI)", "CCE-1105 (MJH)", "CCE-1105 (MJH)", "CCE-1106 Lab", "CCE-1106 Lab", "CCE-1106 Lab"] },
                 { day: "Mon", p: ["-", "GEEL-1106 (TI)", "PHY-1101 (HM)", "CCE-1102 Lab", "CCE-1102 Lab", "CCE-1104 Lab"] },
@@ -383,8 +383,8 @@
                 { day: "Sat", p: ["-", "STAT-2401 (MSH)", "STAT-2401 (MSH)", "-", "CCE-2407 (NCS)", "CCE-2407 (NCS)"] },
                 { day: "Sun", p: ["CCE-2408 Lab", "CCE-2408 Lab", "CCE-2408 Lab", "CCE-2412 Lab", "CCE-2412 Lab", "CCE-2412 Lab"] },
                 { day: "Mon", p: ["MATH-2401 (AH)", "CCE-2411 (RA)", "CCE-2411 (RA)", "CCE-2401 (MIK)", "CCE-2401 (MIK)", "-"] },
-                { day: "Tue", p: ["-", "-", "GEBL-2401 (MHI)", "MATH-2401 (AH)", "MATH-2401 (AH)", "CCE-2407 (NCS)"] },
-                { day: "Wed", p: ["GEBL-2401 (MHI)", "CCE-2411 (RA)", "-", "CCE-2406 (AAM)", "CCE-2406 (AAM)", "CCE-2406 (AAM)"] }
+                { day: "Tue", p: ["-", "GEBL-2401 (MHI)", "-" ,"MATH-2401 (AH)", "MATH-2401 (AH)", "CCE-2407 (NCS)"] },
+                { day: "Wed", p: ["-", "GEBL-2401 (MHI)", "CCE-2411 (RA)",  "CCE-2406 (AAM)", "CCE-2406 (AAM)", "CCE-2406 (AAM)"] }
             ],
             "5AM": [
                 { day: "Sat", p: ["CCE-3511 (DMJI)", "CCE-3511 (DMJI)", "-", "-", "-", "CCE-3501 (AMMF)"] },
@@ -468,7 +468,7 @@
                 { sem: "1st Semester", mid: "10bIQkDJgJB4onZY8WjBPt7I5b_RTuCGl", final: "10bIQkDJgJB4onZY8WjBPt7I5b_RTuCGl" },
                 { sem: "2nd Semester", mid: "10cf5ZEo1oD3ftV6sUorAF4FbSZl9xfi3", final: "10cf5ZEo1oD3ftV6sUorAF4FbSZl9xfi3" },
                 { sem: "3rd Semester", mid: "1u7ti-ZIkk43eUNlV8omaHiuPEhTZyc47", final: "1u7ti-ZIkk43eUNlV8omaHiuPEhTZyc47" },
-                { sem: "4th Semester", mid: "144uO4cI8WYn8tXzVyWAVuVJz9zMtbqoS", final: "1Z5MmuQA-n73AzQQ-R3rCaXrHVXzSYvtc", sess: "1BrQmmlUJuzBQMjJ9CLr7g_h4ss7Au1VU" }, }
+                { sem: "4th Semester", mid: "144uO4cI8WYn8tXzVyWAVuVJz9zMtbqoS", final: "1Z5MmuQA-n73AzQQ-R3rCaXrHVXzSYvtc" }
             ];
             const grid = document.getElementById('resource-grid');
             grid.innerHTML = batchResources.map(r => `
@@ -507,65 +507,104 @@
             document.body.dataset.theme = (next === 'red') ? '' : next;
         }
 
-        function filterFaculty() {
-            const q = document.getElementById('faculty-search').value.toLowerCase();
-            document.querySelectorAll('#faculty-list > div').forEach(c => {
-                c.style.display = c.innerText.toLowerCase().includes(q) ? 'block' : 'none';
-            });
+        const batchResources = [
+            { sem: "1st Semester", mid: "10bIQkDJgJB4onZY8WjBPt7I5b_RTuCGl", final: "10bIQkDJgJB4onZY8WjBPt7I5b_RTuCGl", sessional: null, combined: true },
+            { sem: "2nd Semester", mid: "10cf5ZEo1oD3ftV6sUorAF4FbSZl9xfi3", final: "10cf5ZEo1oD3ftV6sUorAF4FbSZl9xfi3", sessional: null, combined: true },
+            { sem: "3rd Semester", mid: "1u7ti-ZIkk43eUNlV8omaHiuPEhTZyc47", final: "1u7ti-ZIkk43eUNlV8omaHiuPEhTZyc47", sessional: null, combined: true },
+            { sem: "4th Semester", mid: "144uO4cI8WYn8tXzVyWAVuVJz9zMtbqoS", final: "1Z5MmuQA-n73AzQQ-R3rCaXrHVXzSYvtc", sessional: "1BrQmmlUJuzBQMjJ9CLr7g_h4ss7Au1VU" },
+            { sem: "5th Semester", mid: "1S8EHCUECTB_CZyXZ74S9WnrnoG2b9HGJ", final: "1NMPYcfJiyh7hc0SohcuD--c6RlGudou_", sessional: "1HcZ8txe8NPRncmpoc43Y8UVSaUPe3UGL" },
+            { sem: "6th Semester", mid: "14cq4Hx0SlR_RmIZJkvO6faalzis7ooA6", final: "1mZH36mD1FRHTjzuX3N52tee58zMmOKlW", sessional: "1D6Wecgnx2fHpVhtaXGpmLNLR8bS-SlQH" },
+            { sem: "7th Semester", mid: "1JhW0mYPaVxuGFAJj7KoI-Juobc5o5EYn", final: "1-QnB408yR2_ez-_CwQ2ZYWdh076yBvYj", sessional: "1CF5ndO1S7qZ8efW9J06LIXmkDPl_JXil" },
+            { sem: "8th Semester", mid: "1xuPHZx_KhAVUJsbVG_dOMa_zjjekWXEV", final: "1ZGo_qTxhbZRYDRc_Nfj3BCJGgxSIzLKO", sessional: "1pM4EM86D1jHLXq2wQKuIY8dvM9_n-6Kc" }
+        ];
+
+        const questionBankLinks = {
+            mid: [
+                "1K4AG5fu_Jfc4ED1um2_PB9jrEXKGPJhH", "1e80Ll_jJB6ri7BSxN7bM0I-056AfzD5u", 
+                "1bia9MD_yGIfAvOmrba37aWrlZnOhbyko", "1Hbes7ttpyHCUtHPEMAt_S6a1jeScUrj7",
+                "1svvJVXT3Eu8bhy8-dctu6IzhFhvt96q_", "1SLBjGSct9BXqky33Qbx1eGV8AVIvUXTy",
+                "1_2ru-6LN5x533qk_nCDn5afcFUVO_Ur9", "1syaguM1Km_70I8UYvhjezX1hXi-5GHT0"
+            ],
+            final: [
+                "1nwIKR0KtLy0nttUda-6q0QXJLBV_B1-X", "1uPW92xZJwwYf02_Jww-JOJAR_zyqxJg6",
+                "1x28NTKwNak_FTTRmH8lTthhOihPuz8fx", "1QY_fICatkzr8yKXyhAqvfzdBtCFSp3mh",
+                "1FKnAbwrVyzvZe52Y07nz1Q7Dfh1Eg6Bw", "1dmp7C3YAWEtdxCQ0uVydsLcKbBTnq4WR",
+                "1F0Peo2aM4xkyd6ue28ph3zeu1M5_zxRD", "1Ft5dkAS2gWq89HH6V23_qfJ0SkrBoGcU"
+            ]
+        };
+
+        function renderResources() {
+            const grid = document.getElementById('resource-grid');
+            grid.innerHTML = batchResources.map(r => `
+                <div class="glass-card p-5 border-t-4 border-red-500 flex flex-col h-full">
+                    <h3 class="font-bold text-sm mb-4 opacity-50 uppercase tracking-wider">${r.sem}</h3>
+                    <div class="space-y-2 mt-auto">
+                        ${r.combined ? 
+                            `<a href="https://drive.google.com/drive/folders/${r.mid}" target="_blank" class="block w-full py-2.5 px-4 bg-white/5 rounded-lg text-center text-xs font-bold hover:bg-red-500 transition-all uppercase"><i class="fas fa-folder-open mr-2"></i>MID + FINAL</a>` :
+                            `<a href="https://drive.google.com/drive/folders/${r.mid}" target="_blank" class="block w-full py-2.5 px-4 bg-white/5 rounded-lg text-center text-xs font-bold hover:bg-red-500 transition-all uppercase"><i class="fas fa-file-pdf mr-2 text-red-400"></i>MID PDFs</a>
+                             <a href="https://drive.google.com/drive/folders/${r.final}" target="_blank" class="block w-full py-2.5 px-4 bg-white/5 rounded-lg text-center text-xs font-bold hover:bg-red-500 transition-all uppercase"><i class="fas fa-file-pdf mr-2 text-red-400"></i>FINAL PDFs</a>`
+                        }
+                        ${r.sessional ? `<a href="https://drive.google.com/drive/folders/${r.sessional}" target="_blank" class="block w-full py-2.5 px-4 bg-white/10 rounded-lg text-center text-xs font-bold hover:bg-yellow-600 transition-all uppercase"><i class="fas fa-flask mr-2"></i>SESSIONAL</a>` : ''}
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function initThree() {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('particle-bg'), alpha: true, antialias: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.position.z = 100;
-
-            const geometry = new THREE.BufferGeometry();
-            const vertices = [];
-            for (let i = 0; i < 3000; i++) {
-                vertices.push(THREE.MathUtils.randFloatSpread(400), THREE.MathUtils.randFloatSpread(400), THREE.MathUtils.randFloatSpread(400));
+        function renderQuestionBanks() {
+            const list = document.getElementById('question-list');
+            let html = '';
+            for(let i=0; i<8; i++) {
+                html += `
+                    <div class="glass-card p-4 flex flex-col items-center hover:bg-red-500/10 transition-all group">
+                        <div class="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center mb-2 font-bold shadow-lg group-hover:scale-110 transition-transform">0${i+1}</div>
+                        <span class="text-[10px] font-bold uppercase opacity-40 mb-3">Sem Question</span>
+                        <div class="flex flex-col gap-1.5 w-full">
+                            <a href="https://drive.google.com/drive/folders/${questionBankLinks.mid[i]}" target="_blank" 
+                               class="text-[9px] bg-white/5 p-2 rounded-lg hover:bg-red-500 text-center font-bold transition-all uppercase tracking-tighter">MID SET</a>
+                            <a href="https://drive.google.com/drive/folders/${questionBankLinks.final[i]}" target="_blank" 
+                               class="text-[9px] bg-white/5 p-2 rounded-lg hover:bg-red-500 text-center font-bold transition-all uppercase tracking-tighter">FINAL SET</a>
+                        </div>
+                    </div>
+                `;
             }
-            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-            const material = new THREE.PointsMaterial({ color: 0xd32f2f, size: 0.8, transparent: true, opacity: 0.4 });
-            const points = new THREE.Points(geometry, material);
-            scene.add(points);
+            list.innerHTML = html;
+        }
 
-            function animate() {
-                requestAnimationFrame(animate);
-                points.rotation.y += 0.0005;
-                points.rotation.x += 0.0002;
-                renderer.render(scene, camera);
-            }
-            animate();
+        function renderFaculty(data = cceFaculty) {
+            const list = document.getElementById('faculty-list');
+            if(!list) return;
+            list.innerHTML = data.map(f => `
+                <div class="bg-white/5 p-4 rounded-xl border-l-2 border-red-500 hover:bg-white/10 transition-all group">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-grow">
+                            <div class="font-bold text-white text-sm group-hover:text-red-400 transition-colors">${f.name}</div>
+                            <div class="text-[10px] text-white/40 font-bold tracking-widest uppercase mb-2">${f.role}</div>
+                            <a href="tel:${f.mob}" class="inline-flex items-center gap-2 bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white text-[11px] px-3 py-1.5 rounded-lg transition-all border border-red-500/20">
+                                <i class="fas fa-phone-alt"></i> ${f.mob}
+                            </a>
+                        </div>
+                        <div class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-[9px] font-bold shrink-0 ml-2">${f.short}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-            window.addEventListener('resize', () => {
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-            });
+        function filterFaculty() {
+            const query = document.getElementById('faculty-search').value.toLowerCase();
+            const filtered = cceFaculty.filter(f => 
+                f.name.toLowerCase().includes(query) || 
+                f.short.toLowerCase().includes(query) ||
+                f.role.toLowerCase().includes(query)
+            );
+            renderFaculty(filtered);
         }
 
         window.onload = function() {
             AOS.init({ duration: 1000, once: true });
-            initThree();
-            renderRoutine();
             renderResources();
             renderQuestionBanks();
+            renderFaculty();
             
-            // Render Faculty
-            document.getElementById('faculty-list').innerHTML = cceFaculty.map(f => `
-                <div class="bg-white/5 p-4 rounded-xl border-l-2 border-red-500 hover:bg-white/10 transition-all">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <div class="font-bold text-white text-sm">${f.name}</div>
-                            <div class="text-[10px] text-white/40 font-bold tracking-widest uppercase">${f.role}</div>
-                        </div>
-                        <div class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-[9px] font-bold">${f.short}</div>
-                    </div>
-                </div>
-            `).join('');
-
             // Global Search Filter
             document.getElementById('global-search').addEventListener('input', (e) => {
                 const q = e.target.value.toLowerCase();
