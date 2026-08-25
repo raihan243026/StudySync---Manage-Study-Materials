@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +47,14 @@
             scroll-behavior: smooth;
         }
 
-        #particle-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        #particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
         .nav-container {
             position: fixed;
@@ -103,7 +111,7 @@
         .tool-btn:hover {
             background: var(--accent);
             transform: scale(1.05);
-            border-color: rgba(255,255,255,0.3);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         /* Floating Action Buttons */
@@ -127,15 +135,27 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             transition: 0.3s;
         }
 
-        .fab:hover { transform: scale(1.1); background: var(--accent-hover); }
+        .fab:hover {
+            transform: scale(1.1);
+            background: var(--accent-hover);
+        }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
 
         #mobile-menu {
             position: fixed;
@@ -147,12 +167,15 @@
             transform: translateY(-120%);
             transition: 0.4s ease;
             padding: 1.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        #mobile-menu.open { transform: translateY(0); }
+        #mobile-menu.open {
+            transform: translateY(0);
+        }
     </style>
 </head>
+
 <body class="pt-24 lg:pt-32">
     <canvas id="particle-bg"></canvas>
 
@@ -161,14 +184,16 @@
             <!-- Logo -->
             <div class="flex items-center shrink-0">
                 <i class=" fa-solid fa-book-open text-2xl text-red-500 mr-2"></i>
-                <h1 class="text-xl font-bold tracking-tight hidden sm:block">Study <span class="text-red-500"> Materials</span></h1>
+                <h1 class="text-xl font-bold tracking-tight hidden sm:block">Study <span class="text-red-500">
+                        Materials</span></h1>
             </div>
 
             <!-- Enhanced Search Bar -->
             <div class="relative flex-grow max-w-xl group">
-                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-red-500 transition-colors"></i>
-                <input type="text" id="global-search" 
-                    class="w-full bg-white/5 border border-white/10 rounded-full py-2.5 pl-12 pr-4 outline-none focus:border-red-500 focus:bg-white/10 transition-all text-sm" 
+                <i
+                    class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-red-500 transition-colors"></i>
+                <input type="text" id="global-search"
+                    class="w-full bg-white/5 border border-white/10 rounded-full py-2.5 pl-12 pr-4 outline-none focus:border-red-500 focus:bg-white/10 transition-all text-sm"
                     placeholder="Search routine, teachers, or folders...">
             </div>
 
@@ -178,8 +203,10 @@
                     <i class="fas fa-palette"></i>
                 </button>
                 <div class="h-6 w-px bg-white/10 mx-2"></div>
-                <a href="#routine" class="px-4 py-2 text-sm font-medium hover:text-red-500 transition-colors">Routine</a>
-                <a href="#faculty" class="px-4 py-2 text-sm font-medium hover:text-red-500 transition-colors">Faculty</a>
+                <a href="#routine"
+                    class="px-4 py-2 text-sm font-medium hover:text-red-500 transition-colors">Routine</a>
+                <a href="#faculty"
+                    class="px-4 py-2 text-sm font-medium hover:text-red-500 transition-colors">Faculty</a>
             </div>
 
             <!-- Mobile Actions -->
@@ -196,12 +223,24 @@
 
     <div id="mobile-menu" class="lg:hidden">
         <div class="grid grid-cols-2 gap-3">
-            <a href="#essential-links" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-link text-red-500"></i> IIUC Hub</a>
-            <a href="#batch-resources" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-folder text-red-500"></i> PDFs</a>
-            <a href="#question-bank" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-file-invoice text-red-500"></i> Questions</a>
-            <a href="#routine" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-calendar-alt text-red-500"></i> Routine</a>
-            <a href="#faculty" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-user-tie text-red-500"></i> Faculty</a>
-            <a href="#ai-hub" onclick="toggleMobileMenu()" class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i class="fas fa-robot text-red-500"></i> AI Tools</a>
+            <a href="#essential-links" onclick="toggleMobileMenu()"
+                class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i
+                    class="fas fa-link text-red-500"></i> IIUC Hub</a>
+            <a href="#batch-resources" onclick="toggleMobileMenu()"
+                class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i
+                    class="fas fa-folder text-red-500"></i> PDFs</a>
+            <a href="#question-bank" onclick="toggleMobileMenu()"
+                class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i
+                    class="fas fa-file-invoice text-red-500"></i> Questions</a>
+            <a href="#routine" onclick="toggleMobileMenu()"
+                class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i
+                    class="fas fa-calendar-alt text-red-500"></i> Routine</a>
+            <a href="#faculty" onclick="toggleMobileMenu()"
+                class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i
+                    class="fas fa-user-tie text-red-500"></i> Faculty</a>
+            <a href="#ai-hub" onclick="toggleMobileMenu()"
+                class="nav-item p-3 rounded-xl bg-white/5 flex items-center gap-3"><i
+                    class="fas fa-robot text-red-500"></i> AI Tools</a>
         </div>
     </div>
 
@@ -210,21 +249,30 @@
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
             <div id="essential-links" class="glass-card lg:col-span-2 p-6 sm:p-8" data-aos="fade-up">
                 <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-xl font-bold flex items-center"><i class="fas fa-bolt text-yellow-500 mr-3"></i> Quick Access</h2>
-                    <span class="text-[10px] bg-red-500/20 text-red-400 px-3 py-1 rounded-full font-bold uppercase">Essential</span>
+                    <h2 class="text-xl font-bold flex items-center"><i class="fas fa-bolt text-yellow-500 mr-3"></i>
+                        Quick Access</h2>
+                    <span
+                        class="text-[10px] bg-red-500/20 text-red-400 px-3 py-1 rounded-full font-bold uppercase">Essential</span>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                    <a href="https://iiuc-pedia.vercel.app/" target="_blank" class="tool-btn"><i class="fas fa-atlas mb-2 text-xl"></i>Pedia</a>
-                    <a href="https://transport.iiuc.ac.bd/" target="_blank" class="tool-btn"><i class="fas fa-bus mb-2 text-xl"></i>Bus</a>
-                    <a href="https://iiuc-routine.iamsayem.com/" target="_blank" class="tool-btn"><i class="fas fa-clock mb-2 text-xl"></i>Tool</a>
-                    <a href="https://iiuccoverpage.vercel.app/" target="_blank" class="tool-btn"><i class="fas fa-file-contract mb-2 text-xl"></i>Cover</a>
-                    <a href="https://university-cce-teachers-directory.netlify.app/" target="_blank" class="tool-btn"><i class="fas fa-address-book mb-2 text-xl"></i>Dir</a>
+                    <a href="https://iiuc-pedia.vercel.app/" target="_blank" class="tool-btn"><i
+                            class="fas fa-atlas mb-2 text-xl"></i>Pedia</a>
+                    <a href="https://transport.iiuc.ac.bd/" target="_blank" class="tool-btn"><i
+                            class="fas fa-bus mb-2 text-xl"></i>Bus</a>
+                    <a href="https://iiuc-routine.iamsayem.com/" target="_blank" class="tool-btn"><i
+                            class="fas fa-clock mb-2 text-xl"></i>Tool</a>
+                    <a href="https://iiuccoverpage.vercel.app/" target="_blank" class="tool-btn"><i
+                            class="fas fa-file-contract mb-2 text-xl"></i>Cover</a>
+                    <a href="https://university-cce-teachers-directory.netlify.app/" target="_blank" class="tool-btn"><i
+                            class="fas fa-address-book mb-2 text-xl"></i>Dir</a>
                 </div>
             </div>
 
-            <div class="glass-card p-8 flex flex-col items-center justify-center text-center overflow-hidden relative" data-aos="fade-up">
+            <div class="glass-card p-8 flex flex-col items-center justify-center text-center overflow-hidden relative"
+                data-aos="fade-up">
                 <div id="clock" class="text-6xl font-bold tracking-tighter text-red-500 mb-1 z-10">00:00:00</div>
-                <div id="date-display" class="text-xs uppercase tracking-[0.2em] text-white/40 font-semibold z-10">...</div>
+                <div id="date-display" class="text-xs uppercase tracking-[0.2em] text-white/40 font-semibold z-10">...
+                </div>
                 <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-red-500/10 rounded-full blur-3xl"></div>
             </div>
         </section>
@@ -257,7 +305,8 @@
                 <div id="routine" class="glass-card xl:col-span-2 p-6 sm:p-8" data-aos="fade-right">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                         <h2 class="text-xl font-bold text-red-500">Class Schedule</h2>
-                        <select id="routine-select" onchange="renderRoutine()" class="w-full sm:w-auto bg-white/10 border-none rounded-xl p-2.5 text-sm outline-none focus:ring-2 ring-red-500 cursor-pointer">
+                        <select id="routine-select" onchange="renderRoutine()"
+                            class="w-full sm:w-auto bg-white/10 border-none rounded-xl p-2.5 text-sm outline-none focus:ring-2 ring-red-500 cursor-pointer">
                             <option value="1">1st Semester</option>
                             <option value="2AM">2nd Sem (AM)</option>
                             <option value="2BM">2nd Sem (BM)</option>
@@ -278,8 +327,8 @@
 
                 <div id="faculty" class="glass-card p-6" data-aos="fade-left">
                     <h2 class="text-xl font-bold mb-6 text-red-500">Faculty Directory</h2>
-                    <input type="text" id="faculty-search" onkeyup="filterFaculty()" 
-                        class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm mb-6 outline-none focus:border-red-500" 
+                    <input type="text" id="faculty-search" onkeyup="filterFaculty()"
+                        class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm mb-6 outline-none focus:border-red-500"
                         placeholder="Search name or initial...">
                     <div id="faculty-list" class="space-y-3 max-h-[500px] overflow-y-auto pr-2 custom-scroll">
                         <!-- JS Injected -->
@@ -289,7 +338,8 @@
 
             <!-- AI Tools -->
             <div id="ai-hub" class="glass-card p-6 sm:p-8" data-aos="fade-up">
-                <h2 class="text-xl font-bold mb-8 text-center sm:text-left"><i class="fas fa-brain text-red-500 mr-3"></i> AI Productivity Suite</h2>
+                <h2 class="text-xl font-bold mb-8 text-center sm:text-left"><i
+                        class="fas fa-brain text-red-500 mr-3"></i> AI Productivity Suite</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3">
                     <a href="https://deepseek.com/" target="_blank" class="tool-btn">DeepSeek</a>
                     <a href="https://gemini.google.com/" target="_blank" class="tool-btn">Gemini</a>
@@ -304,11 +354,15 @@
         </section>
 
         <footer class="mt-20 pt-10 border-t border-white/5 text-center">
-            <p class="text-white/20 text-sm font-medium tracking-widest uppercase">CCE Department • International Islamic University Chittagong</p>
+            <p class="text-white/20 text-sm font-medium tracking-widest uppercase">CCE Department • International
+                Islamic University Chittagong</p>
             <div class="flex justify-center gap-6 my-8">
-                <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i class="fab fa-github"></i></a>
-                <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i
+                        class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i
+                        class="fab fa-github"></i></a>
+                <a href="#" class="text-white/30 hover:text-red-500 transition-all text-xl"><i
+                        class="fab fa-linkedin"></i></a>
             </div>
             <p class="text-white/10 text-[10px] pb-10">&copy; CCE Study Materials </p>
         </footer>
@@ -318,7 +372,8 @@
         <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fab" title="Scroll Up">
             <i class="fas fa-arrow-up"></i>
         </button>
-        <button onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})" class="fab" title="Scroll Down">
+        <button onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})" class="fab"
+            title="Scroll Down">
             <i class="fas fa-arrow-down"></i>
         </button>
     </div>
@@ -329,7 +384,7 @@
 
         window.addEventListener('scroll', () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
+
             // Hide/Show Navbar on scroll
             if (scrollTop > lastScrollTop && scrollTop > 100) {
                 navbar.classList.add('nav-hidden');
@@ -351,162 +406,224 @@
         }
 
         const routines = {
-    // Female Sections
-    "1F": [
-        { day: "Sat", p: ["CCE-1106 Lab (MKH)", "CCE-1106 Lab (MKH)", "CCE-1106 Lab (MKH)", "Math-1101 (AH)", "Math-1101 (AH)", "-"] },
-        { day: "Sun", p: ["CCE-1104 Lab (JN)", "CCE-1104 Lab (JN)", "CCE-1104 Lab (JN)", "GEEL-1106 (MKS)", "MATH-1101 (AH)", "-"] },
-        { day: "Mon", p: ["GEEL-1106 (MKS)", "GEEL-1106 (MKS)", "CCE-1105 (MJH)", "PHY-1101 (HM)", "PHY-1101 (HM)", "CCE-1103 (JN)"] },
-        { day: "Tue", p: ["CCE-1102 Lab (NS)", "CCE-1102 Lab (NS)", "-", "GEEM-1101 (ARN)", "-", "-"] },
-        { day: "Wed", p: ["PHY-1101 (HM)", "GEEM-1101 (ARN)", "CCE-1105 (MJH)", "CCE-1105 (MJH)", "CCE-1103 (JN)", "CCE-1103 (JN)"] }
-    ],
-    "2F": [
-        { day: "Sat", p: ["CCE-1207 (AJ)", "CCE-1207 (AJ)", "MATH-2401 (AH)", "MDP-1201", "CCE-1207 (AJ)", "-"] },
-        { day: "Sun", p: ["CCE-1206 Lab (FA)", "CCE-1206 Lab (FA)", "CCE-1206 Lab (FA)", "CCE-1209 (JN)", "GEED-1201 (NI-IS)", "PHY-1202 (HM)"] },
-        { day: "Mon", p: ["PHY-1202 Lab (HM)", "PHY-1202 Lab (HM)", "PHY-1202 Lab (HM)", "-", "GEED-1201 (NI-IS)", "-"] },
-        { day: "Tue", p: ["PHY-1201 (HM)", "PHY-1201 (HM)", "MATH-2401 (AH)", "MATH-2401 (AH)", "CCE-1209 (JN)", "CCE-1209 (JN)"] },
-        { day: "Wed", p: ["CCE-1210 Lab (JN)", "CCE-1210 Lab (JN)", "CCE-1210 Lab (JN)", "CCE-1208 Lab (AJ)", "CCE-1208 Lab (AJ)", "CCE-1208 Lab (AJ)"] }
-    ],
-    "3F": [
-        { day: "Sat", p: ["MATH-2301 (DMGH)", "MATH-2301 (DMGH)", "MATH-2301 (DMGH)", "GEED-2302 (MJI)", "CCE-2307 (AA)", "CCE-2307 (AA)"] },
-        { day: "Sun", p: ["CHEM-2301 Lab (DMS)", "CHEM-2301 Lab (DMS)", "CCE-2301 (AAM)", "CCE-2301 (AAM)", "-", "-"] },
-        { day: "Mon", p: ["CCE-2301 (AAM)", "-", "MDP-2302", "CCE-2305 (IUF)", "CCE-2305 (IUF)", "-"] },
-        { day: "Tue", p: ["CCE-2302 Lab (AJ)", "CCE-2302 Lab (AJ)", "-", "CHEM-2301 (DMS)", "CHEM-2301 (DMS)", "CHEM-2301 (DMS)"] },
-        { day: "Wed", p: ["CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)", "GEED-2302 (MJI)", "-", "-"] }
-    ],
-    "4F": [
-        { day: "Sat", p: ["STAT-2401 (MSH)", "STAT-2401 (MSH)", "CCE-2407 (NCS)", "CCE-2407 (JN)", "CCE-2407 (JN)", "MATH-2401 (AH)"] },
-        { day: "Sun", p: ["CCE-2408 Lab (NCS)", "CCE-2408 Lab (NCS)", "CCE-2408 Lab (NCS)", "GEBL-2401 (adj.B/SUJ)", "CCE-2411 (JN)", "CCE-2411 (JN)"] },
-        { day: "Mon", p: ["-", "GEBL-2401 (adj.B/SUJ)", "CCE-2401 (MIK)", "CCE-2401 (MIK)", "-", "-"] },
-        { day: "Tue", p: ["CCE-2412 Lab (JN)", "CCE-2412 Lab (JN)", "CCE-2412 Lab (JN)", "-", "-", "-"] },
-        { day: "Wed", p: ["CCE-2406 Lab (FA)", "CCE-2406 Lab (FA)", "CCE-2406 Lab (FA)", "CCE-2411 (JN)", "MATH-2401 (AH)", "MATH-2401 (AH)"] }
-    ],
-    "5F": [
-        { day: "Sat", p: ["CCE-3511 (DMJI)", "CCE-3511 (DMJI)", "CCE-3509 (ANS)", "CCE-3501 (NM)", "CCE-3501 (NM)", "MDP-3503 (JN)"] },
-        { day: "Sun", p: ["CCE-3506/3508 Lab (AJ/ARAM)", "CCE-3506/3508 Lab (AJ/ARAM)", "CCE-3509 (ANS)", "-", "ACC-3501 (TS)", "ACC-3501 (TS)"] },
-        { day: "Mon", p: ["-", "URED-3503 (MJI)", "CCE-3505 (AJ)", "CCE-3505 (AJ)", "CCE-3503 (NCS)", "CCE-3503 (NCS)"] },
-        { day: "Tue", p: ["CCE-3502 Lab (NM)", "CCE-3502 Lab (NM)", "CCE-3505 (AJ)", "CCE-3507 (ARAM)", "CCE-3507 (ARAM)", "-"] },
-        { day: "Wed", p: ["CCE-3506/3508 Lab (AJ/ARAM)", "CCE-3506/3508 Lab (AJ/ARAM)", "-", "CCE-3509 (ANS)", "URED-3503 (MJI)", "-"] }
-    ],
-    "6F": [
-        { day: "Sat", p: ["CCE-3602 Lab (DMSI)", "CCE-3602 Lab (DMSI)", "CCE-3601 (DMSI)", "CCE-3606 Lab (WBA)", "CCE-3606 Lab (WBA)", "CCE-3606 Lab (WBA)"] },
-        { day: "Sun", p: ["CCE-3601 (DMSI)", "-", "CCE-3616 (DMS)", "CCE-3611 (HJ)", "CCE-3611 (HJ)", "-"] },
-        { day: "Mon", p: ["CCE-3612 Lab (HJ)", "CCE-3612 Lab (HJ)", "CCE-3612 Lab (HJ)", "CCE-3616 (DMS)", "GEHE-3613 (Adj/His DABS)", "GEHE-3613 (Adj/His DABS)"] },
-        { day: "Tue", p: ["CCE-3609 Lab (ARAM)", "CCE-3609 Lab (ARAM)", "CCE-3609 Lab (ARAM)", "CCE-3613 (NCS)", "CCE-3614 Lab (NCS)", "CCE-3614 Lab (NCS)"] },
-        { day: "Wed", p: ["CCE-3612 Lab Group-B (HJ)", "CCE-3612 Lab Group-B (HJ)", "CCE-3612 Lab Group-B (HJ)", "CCE-3611 (HJ)", "-", "CCE-3613 (NCS)"] }
-    ],
-    "7F": [
-        { day: "Sat", p: ["CCE-4720 Lab (SMI)", "CCE-4720 Lab (SMI)", "CCE-4719 (SMI)", "CCE-4707 (DMAH)", "CCE-4708 Lab (DMAH)", "CCE-4708 Lab (DMAH)"] },
-        { day: "Sun", p: ["CCE-4706 Lab (MI)", "CCE-4706 Lab (MI)", "CCE-4705 (MI)", "CCE-4830 Lab (MR)", "CCE-4830 Lab (MR)", "CCE-4701 (HJ)"] },
-        { day: "Mon", p: ["CCE-3606 Lab (AMMF)", "CCE-4707 (DMAH)", "CCE-4719 (SMI)", "CCE-4702 Lab (HJ)", "CCE-4702 Lab (HJ)", "CCE-4702 Lab (HJ)"] },
-        { day: "Tue", p: ["URIH-4701 (NTH)", "URIH-4701 (NTH)", "CCE-4705 (MI)", "CCE-4705 (MI)", "CCE-4701 (HJ)", "CCE-4701 (HJ)"] },
-        { day: "Wed", p: ["ECON-4701 (TS)", "ECON-4701 (TS)", "CCE-4711 (N/A)", "CCE-4711 (N/A)", "CCE-4829 (MR)", "CCE-4829 (MR)"] }
-    ],
-    "8F": [
-        { day: "Sat", p: ["CCE-4808 Lab (ZUA)", "CCE-4808 Lab (ZUA)", "CCE-4808 Lab (ZUA)", "CCE-4805 (ANS)", "MGT-4701 (DJ)", "MGT-4701 (DJ)"] },
-        { day: "Sun", p: ["CCE-4804 Lab (AAM)", "CCE-4804 Lab (AAM)", "-", "-", "-", "-"] },
-        { day: "Mon", p: ["CCE-4806 Lab (ANS)", "CCE-4806 Lab (ANS)", "CCE-4805 (ANS)", "-", "-", "-"] },
-        { day: "Tue", p: ["LAW-4821 (MMM)", "LAW-4821 (MMM)", "CCE-4802 Lab (MIK)", "CCE-4802 Lab (MIK)", "CCE-4803 (AAM)", "CCE-4803 (AAM)"] },
-        { day: "Wed", p: ["CCE-4801 (N/A)", "CCE-4801 (N/A)", "CCE-4825 (MZH)", "CCE-4825 (MZH)", "CCE-4826 Lab (MZH)", "CCE-4826 Lab (MZH)"] }
-    ],
-    // Male Sections
-    "1AM": [
-        { day: "Sat", p: ["CCE-1104 Lab (IUF)", "CCE-1104 Lab (IUF)", "CCE-1104 Lab (IUF)", "-", "-", "-"] },
-        { day: "Sun", p: ["CCE-1103 (IUF)", "CCE-1105 (MJH)", "CCE-1105 (MJH)", "MATH-1101 (AH)", "MATH-1101 (AH)", "GEEL-1106 (TI)"] },
-        { day: "Mon", p: ["PHY-1101 (HM)", "GEEL-1106 (TI)", "GEEM-1101 (SIC)", "CCE-1106 Lab (MJH)", "CCE-1106 Lab (MJH)", "CCE-1106 Lab (MJH)"] },
-        { day: "Tue", p: ["CCE-1103 (IUF)", "CCE-1103 (IUF)", "-", "-", "CCE-1105 (MJH)", "CCE-1102 Lab (NS)"] },
-        { day: "Wed", p: ["CCE-1105 (MJH)", "GEEL-1106 (TI)", "GEEM-1101 (SIC)", "PHY-1101 (HM)", "PHY-1101 (HM)", "-"] }
-    ],
-    "1BM": [
-        { day: "Sat", p: ["CCE-1106 Lab (MJH)", "CCE-1106 Lab (MJH)", "CCE-1106 Lab (MJH)", "CCE-1103 (IUF)", "CCE-1103 (IUF)", "-"] },
-        { day: "Sun", p: ["CCE-1105 (MJH)", "GEEL-1106 (TI)", "-", "CCE-1104 Lab (IUF)", "CCE-1104 Lab (IUF)", "CCE-1104 Lab (IUF)"] },
-        { day: "Mon", p: ["CCE-1105 (MJH)", "CCE-1105 (MJH)", "GEEL-1106 (TI)", "PHY-1101 (HM)", "PHY-1101 (HM)", "-"] },
-        { day: "Tue", p: ["CCE-1102 Lab (NS)", "CCE-1102 Lab (NS)", "MATH-1101 (AH)", "-", "GEEL-1106 (TI)", "-"] },
-        { day: "Wed", p: ["GEEM-1101 (MOF)", "GEEM-1101 (MOF)", "CCE-1103 (IUF)", "MATH-1101 (AH)", "MATH-1101 (AH)", "PHY-1101 (HM)"] }
-    ],
-    "2AM": [
-        { day: "Sat", p: ["MDP-1201 (MMR)", "PHY-1201 (HM)", "PHY-1201 (HM)", "CCE-1208 Lab (MJH)", "CCE-1208 Lab (MJH)", "CCE-1208 Lab (MJH)"] },
-        { day: "Sun", p: ["-", "CCE-1209 (IUF)", "CCE-1209 (IUF)", "CCE-1207 (MJH)", "-", "MATH-1201 (AH)"] },
-        { day: "Mon", p: ["CCE-1206 Lab (ANS)", "CCE-1206 Lab (ANS)", "-", "MATH-1201 (AH)", "MATH-1201 (AH)", "-"] },
-        { day: "Tue", p: ["PHY-1202 Lab (HM)", "PHY-1202 Lab (HM)", "PHY-1202 Lab (HM)", "GEED-1201 (AI)", "CCE-1207 (MJH)", "CCE-1207 (MJH)"] },
-        { day: "Wed", p: ["CCE-1209 (IUF)", "GEED-1201 (AI)", "PHY-1201 (HM)", "CCE-1210 Lab (IUF)", "CCE-1210 Lab (IUF)", "CCE-1210 Lab (IUF)"] }
-    ],
-    "3AM": [
-        { day: "Sat", p: ["CCE-2305 (MAA)", "CCE-2305 (MAA)", "MDP-2302 (MU)", "MATH-2301 (DMGH)", "MATH-2301 (DMGH)", "MATH-2301 (DMGH)"] },
-        { day: "Sun", p: ["CCE-2301 (AAM)", "CCE-2302 Lab (AAM)", "CCE-2302 Lab (AAM)", "CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)"] },
-        { day: "Mon", p: ["-", "CHEM-2302 Lab (DMS)", "CHEM-2302 Lab (DMS)", "CHEM-2301 (DMS)", "CHEM-2301 (DMS)", "CHEM-2301 (DMS)"] },
-        { day: "Tue", p: ["-", "-", "-", "-", "GEED-2301 (AI)", "-"] },
-        { day: "Wed", p: ["GEED-2301 (AI)", "CCE-2307 (MIK)", "CCE-2307 (MIK)", "-", "CCE-2301 (AAM)", "CCE-2301 (AAM)"] }
-    ],
-    "3BM": [
-        { day: "Sat", p: ["MATH-2301 (DMGH)", "MATH-2301 (DMGH)", "MATH-2301 (DMGH)", "CCE-2307 (AA)", "CCE-2307 (AA)", "MDP-2305 (SA)"] },
-        { day: "Sun", p: ["CHEM-2301 (DMS)", "CHEM-2301 (DMS)", "CHEM-2301 (DMS)", "CHEM-2302 Lab (DMS)", "CHEM-2302 Lab (DMS)", "CHEM-2302 Lab (DMS)"] },
-        { day: "Mon", p: ["-", "-", "CCE-2301 (AAM)", "CCE-2301 (AAM)", "-", "-"] },
-        { day: "Tue", p: ["CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)", "MDP-2305 (MAA)", "MDP-2305 (MAA)", "-"] },
-        { day: "Wed", p: ["CCE-2302 Lab (AAM)", "CCE-2302 Lab (AAM)", "GEED-2302 (AI)", "-", "-", "-"] }
-    ],
-    "4AM": [
-        { day: "Sat", p: ["-", "STAT-2401 (MSH)", "STAT-2401 (MSH)", "MATH-2401 (AH)", "CCE-2411 (RA)", "CCE-2411 (RA)"] },
-        { day: "Sun", p: ["CCE-2408 Lab (NCS)", "CCE-2408 Lab (NCS)", "CCE-2408 Lab (NCS)", "-", "-", "-"] },
-        { day: "Mon", p: ["MATH-2401 (AH)", "MATH-2401 (AH)", "GEBL-2401 (MHI)", "CCE-2401 (MIK)", "CCE-2401 (MIK)", "CCE-2407 (NCS)"] },
-        { day: "Tue", p: ["-", "GEBL-2401 (MHI)", "CCE-2411 (RA)", "CCE-2406 Lab (MR)", "CCE-2406 Lab (MR)", "CCE-2406 Lab (MR)"] },
-        { day: "Wed", p: ["CCE-2407 (NCS)", "CCE-2407 (NCS)", "-", "CCE-2406 Lab (MR)", "CCE-2406 Lab (MR)", "CCE-2406 Lab (MR)"] }
-    ],
-    "5AM": [
-        { day: "Sat", p: ["ACC-3501 (DSA)", "ACC-3501 (DSA)", "-", "CCE-3509 (ANS)", "-", "-"] },
-        { day: "Sun", p: ["URED-3503 (MMA)", "CCE-3505 (MHS)", "CCE-3505 (MHS)", "CCE-3501 (MA)", "CCE-3501 (MA)", "MDP-3503 (RA)"] },
-        { day: "Mon", p: ["CCE-3502 Lab (MA)", "CCE-3502 Lab (MA)", "CCE-3505 (MHS)", "CCE-3508 Lab (ARAM)", "CCE-3508 Lab (ARAM)", "-"] },
-        { day: "Tue", p: ["URED-3503 (MMA)", "CCE-3509 (ANS)", "CCE-3509 (ANS)", "CCE-3507 (ARAM)", "CCE-3507 (ARAM)", "-"] },
-        { day: "Wed", p: ["CCE-3506 Lab (MHS)", "CCE-3506 Lab (MHS)", "CCE-3506 Lab (MHS)", "CCE-3511 (DMJI)", "CCE-3511 (DMJI)", "CCE-3503 (NCS)"] }
-    ],
-    "6AM": [
-        { day: "Sat", p: ["CCE-3601 Lab (DMSI)", "CCE-3602 Lab (DMSI)", "CCE-3602 Lab (DMSI)", "CCE-3606 Lab (WBA)", "CCE-3606 Lab (WBA)", "CCE-3606 Lab (WBA)"] },
-        { day: "Sun", p: ["CCE-3601 (DMSI)", "URED-3201 (MMA)", "GEHE-3601 (Adj DABS)", "CCE-3613 (NCS)", "CCE-3613 (NCS)", "MDP-3604 (N/A)"] },
-        { day: "Mon", p: ["CCE-3609 (ARAM)", "CCE-3611 (MIK)", "CCE-3611 (MIK)", "CCE-3614 Lab (NCS)", "CCE-3614 Lab (NCS)", "GEHE-3601 (Adj DABS)"] },
-        { day: "Tue", p: ["CCE-3612 Lab (MIK)", "CCE-3612 Lab (MIK)", "CCE-3612 Lab (MIK)", "CCE-3616 (DMS)", "CCE-3616 (DMS)", "URED-3201 (MMA)"] },
-        { day: "Wed", p: ["CCE-3611 (MIK)", "CCE-3609 (ARAM)", "CCE-3609 (ARAM)", "-", "-", "-"] }
-    ],
-    "7AM": [
-        { day: "Sat", p: ["CCE-4719 Lab (SMI)", "CCE-4720 Lab (SMI)", "CCE-4720 Lab (SMI)", "CCE-4708 Lab (DMAH)", "CCE-4708 Lab (DMAH)", "CCE-4708 Lab (DMAH)"] },
-        { day: "Sun", p: ["CCE-4706 Lab (MI)", "CCE-4706 Lab (MI)", "CCE-4705 (MI)", "CCE-4705 (MI)", "CCE-4707 (DMAH)", "-"] },
-        { day: "Mon", p: ["CCE-4830 Lab (MR)", "CCE-4830 Lab (MR)", "URIH-4701 (NTH)", "URIH-4701 (NTH)", "CCE-4829 (MR)", "CCE-4829 (MR)"] },
-        { day: "Tue", p: ["-", "ECON-4701 (DSA)", "ECON-4701 (DSA)", "CCE-4701 (HJ)", "CCE-4702 Lab (HJ)", "CCE-4702 Lab (HJ)"] },
-        { day: "Wed", p: ["CCE-4711 (DMJI)", "CCE-4711 (DMJI)", "CCE-4701 (HJ)", "CCE-4701 (HJ)", "CCE-4701 (HJ)", "CCE-4719 (SMI)"] }
-    ],
-    "8AM": [
-        { day: "Sat", p: ["MGT-4701 (DJ)", "MGT-4701 (DJ)", "-", "CCE-4808 Lab (ZUA)", "CCE-4808 Lab (ZUA)", "CCE-4808 Lab (ZUA)"] },
-        { day: "Sun", p: ["CCE-4806 Lab (ANS)", "CCE-4806 Lab (ANS)", "CCE-4825 (MZH)", "CCE-4825 (MZH)", "CCE-4826 Lab (MZH)", "CCE-4826 Lab (MZH)"] },
-        { day: "Mon", p: ["-", "CCE-4804 Lab (AAM)", "CCE-4804 Lab (AAM)", "-", "CCE-4805 (ANS)", "CCE-4803 (AAM)"] },
-        { day: "Tue", p: ["CCE-4805 (ANS)", "-", "-", "CCE-4802 Lab (MIK)", "CCE-4802 Lab (MIK)", "-"] },
-        { day: "Wed", p: ["LAW-4821 (MMM)", "LAW-4821 (MMM)", "-", "-", "CCE-4801 (N/A)", "CCE-4801 (N/A)"] }
-    ]
-};
+            // Female Sections
+            "1F": [
+                { day: "Sat", p: ["CCE-1106 Lab (MKH)", "CCE-1106 Lab (MKH)", "CCE-1106 Lab (MKH)", "Math-1101 (AH)", "Math-1101 (AH)", "-"] },
+                { day: "Sun", p: ["CCE-1104 Lab (JN)", "CCE-1104 Lab (JN)", "CCE-1104 Lab (JN)", "GEEL-1106 (MKS)", "MATH-1101 (AH)", "-"] },
+                { day: "Mon", p: ["GEEL-1106 (MKS)", "GEEL-1106 (MKS)", "CCE-1105 (MJH)", "PHY-1101 (HM)", "PHY-1101 (HM)", "CCE-1103 (JN)"] },
+                { day: "Tue", p: ["CCE-1102 Lab (NS)", "CCE-1102 Lab (NS)", "-", "GEEM-1101 (ARN)", "-", "-"] },
+                { day: "Wed", p: ["PHY-1101 (HM)", "GEEM-1101 (ARN)", "CCE-1105 (MJH)", "CCE-1105 (MJH)", "CCE-1103 (JN)", "CCE-1103 (JN)"] }
+            ],
+            "2F": [
+                { day: "Sat", p: ["CCE-1207 (AJ)", "CCE-1207 (AJ)", "MATH-2401 (AH)", "-", "-", "MDP-1201 (Adj_RA)"] },
+                { day: "Sun", p: ["CCE-1206 Lab (FA)", "CCE-1206 Lab (FA)", "CCE-1206 Lab (FA)", "CCE-1209 (JN)", "GEED-1201 (NI-IS)", "PHY-1202 (HM)"] },
+                { day: "Mon", p: ["PHY-1202 Lab (HM)", "PHY-1202 Lab (HM)", "PHY-1202 Lab (HM)", "-", "GEED-1201 (NI-IS)", "CCE-1207 (AJ)"] },
+                { day: "Tue", p: ["PHY-1201 (HM)", "PHY-1201 (HM)", "MATH-2401 (AH)", "MATH-2401 (AH)", "CCE-1209 (JN)", "CCE-1209 (JN)"] },
+                { day: "Wed", p: ["CCE-1210 Lab (JN)", "CCE-1210 Lab (JN)", "CCE-1210 Lab (JN)", "CCE-1208 Lab (AJ)", "CCE-1208 Lab (AJ)", "CCE-1208 Lab (AJ)"] }
+            ],
+            "3F": [
+                { day: "Sat", p: ["MATH-2301 (DMGH)", "MATH-2301 (DMGH)", "MATH-2301 (DMGH)", "GEED-2302 (MJI)", "-", "-"] },
+                { day: "Sun", p: ["CHEM-2301 Lab (DMS)", "CHEM-2301 Lab (DMS)", "CCE-2307 (AA)", "-", "-", "CCE-2307 (AA)"] },
+                { day: "Mon", p: ["CCE-2301 (AAM)", "CCE-2301 (AAM)", "MDP-2302 (SAB)", "CCE-2305 (IUF)", "CCE-2305 (IUF)", "-"] },
+                { day: "Tue", p: ["CCE-2302 Lab (AJ)", "CCE-2302 Lab (AJ)", "CCE-2301 (AAM)", "CHEM-2301 (DMS)", "CHEM-2301 (DMS)", "CHEM-2301 (DMS)"] },
+                { day: "Wed", p: ["CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)", "GEED-2302 (MJI)", "-", "-"] }
+            ],
+            "4F": [
+                { day: "Sat", p: ["STAT-2401 (MSH)", "STAT-2401 (MSH)", "CCE-2407 (JN)", "CCE-2407 (JN)", "CCE-2407 (JN)", "MATH-2401 (AH)"] },
+                { day: "Sun", p: ["CCE-2408 Lab (NCS)", "CCE-2408 Lab (NCS)", "CCE-2408 Lab (NCS)", "GEBL-2401 (adj.B/SUJ)", "CCE-2411 (JN)", "CCE-2411 (JN)"] },
+                { day: "Mon", p: ["-", "GEBL-2401 (adj.B/SUJ)", "CCE-2401 (MIK)", "CCE-2401 (MIK)", "-", "-"] },
+                { day: "Tue", p: ["CCE-2412 Lab (JN)", "CCE-2412 Lab (JN)", "CCE-2412 Lab (JN)", "-", "-", "-"] },
+                { day: "Wed", p: ["CCE-2406 Lab (FA)", "CCE-2406 Lab (FA)", "CCE-2406 Lab (FA)", "CCE-2411 (JN)", "MATH-2401 (AH)", "MATH-2401 (AH)"] }
+            ],
+            "5F": [
+                { day: "Sat", p: ["CCE-3511 (DMJI)", "CCE-3511 (DMJI)", "CCE-3509 (ANS)", "CCE-3501 (NM)", "CCE-3501 (NM)", "MDP-3503 (JN)"] },
+                { day: "Sun", p: ["CCE-3506/3508 Lab (AJ/ARAM)", "CCE-3506/3508 Lab (AJ/ARAM)", "CCE-3509 (ANS)", "-", "ACC-3501 (TS)", "ACC-3501 (TS)"] },
+                { day: "Mon", p: ["-", "URED-3503 (MJI)", "CCE-3505 (AJ)", "CCE-3505 (AJ)", "CCE-3503 (NCS)", "CCE-3503 (NCS)"] },
+                { day: "Tue", p: ["CCE-3502 Lab (NM)", "CCE-3502 Lab (NM)", "CCE-3505 (AJ)", "CCE-3507 (ARAM)", "CCE-3507 (ARAM)", "-"] },
+                { day: "Wed", p: ["CCE-3506/3508 Lab (AJ/ARAM)", "CCE-3506/3508 Lab (AJ/ARAM)", "-", "CCE-3509 (ANS)", "URED-3503 (MJI)", "-"] }
+            ],
+            "6F": [
+                { day: "Sat", p: ["CCE-3602 Lab (DMSI)", "CCE-3602 Lab (DMSI)", "CCE-3602 Lab (DMSI)", "CCE-3606 Lab (WBA)", "CCE-3606 Lab (WBA)", "CCE-3606 Lab (WBA)"] },
+                { day: "Sun", p: ["-", "CCE-3601 (DMSI)", "CCE-3616 (DMS)", "CCE-3611 (HJ)", "CCE-3611 (HJ)", "-"] },
+                { day: "Mon", p: ["CCE-3612 Lab (HJ)", "CCE-3612 Lab (HJ)", "CCE-3612 Lab (HJ)", "CCE-3616 (DMS)", "GEHE-3613 (Adj/His DABS)", "GEHE-3613 (Adj/His DABS)"] },
+                { day: "Tue", p: ["CCE-3609 Lab (ARAM)", "CCE-3609 Lab (ARAM)", "CCE-3609 Lab (ARAM)", "CCE-3614 Lab (NCS)", "CCE-3614 Lab (NCS)", "CCE-3614 Lab (NCS)"] },
+                { day: "Wed", p: ["CCE-3612 Lab (HJ)", "CCE-3612 Lab (HJ)", "CCE-3612 Lab (HJ)", "CCE-3611 (HJ)", "-", "CCE-3613 (NCS)"] }
+            ],
+            "7F": [
+                { day: "Sat", p: ["CCE-4720 Lab (SMI)", "CCE-4720 Lab (SMI)", "CCE-4720 Lab (SMI)", "CCE-4708 Lab (DMAH)", "CCE-4708 Lab (DMAH)", "CCE-4708 Lab (DMAH)"] },
+                { day: "Sun", p: ["CCE-4706 Lab (MI)", "CCE-4706 Lab (MI)", "CCE-4706 Lab (MI)", "CCE-4830 Lab (MR)", "CCE-4830 Lab (MR)", "CCE-4701 (HJ)"] },
+                { day: "Mon", p: ["CCE-3606 Lab (AMMF)", "CCE-4707 (DMAH)", "CCE-4719 (SMI)", "CCE-4702 Lab (HJ)", "CCE-4702 Lab (HJ)", "CCE-4702 Lab (HJ)"] },
+                { day: "Tue", p: ["URIH-4701 (NTH)", "URIH-4701 (NTH)", "CCE-4705 (MI)", "CCE-4705 (MI)", "CCE-4701 (HJ)", "CCE-4701 (HJ)"] },
+                { day: "Wed", p: ["ECON-4701 (TS)", "ECON-4701 (TS)", "CCE-4711 (N/A)", "CCE-4711 (N/A)", "CCE-4829 (MR)", "CCE-4829 (MR)"] }
+            ],
+            "8F": [
+                { day: "Sat", p: ["CCE-4808 Lab (ZUA)", "CCE-4808 Lab (ZUA)", "CCE-4808 Lab (ZUA)", "CCE-4805 (ANS)", "MGT-4701 (DJ)", "MGT-4701 (DJ)"] },
+                { day: "Sun", p: ["CCE-4804 Lab (AAM)", "CCE-4804 Lab (AAM)", "-", "-", "-", "-"] },
+                { day: "Mon", p: ["CCE-4806 Lab (ANS)", "CCE-4806 Lab (ANS)", "CCE-4805 (ANS)", "-", "-", "-"] },
+                { day: "Tue", p: ["LAW-4821 (MMM)", "LAW-4821 (MMM)", "CCE-4802 Lab (MIK)", "CCE-4802 Lab (MIK)", "CCE-4803 (AAM)", "CCE-4803 (AAM)"] },
+                { day: "Wed", p: ["CCE-4801 (N/A)", "CCE-4801 (N/A)", "CCE-4825 (MZH)", "CCE-4825 (MZH)", "CCE-4826 Lab (MZH)", "CCE-4826 Lab (MZH)"] }
+            ],
+
+            // Male Sections
+            "1AM": [
+                { day: "Sat", p: ["CCE-1104 Lab (IUF)", "CCE-1104 Lab (IUF)", "CCE-1104 Lab (IUF)", "-", "-", "-"] },
+                { day: "Sun", p: ["CCE-1103 (IUF)", "CCE-1105 (MJH)", "CCE-1105 (MJH)", "MATH-1101 (AH)", "MATH-1101 (AH)", "GEEL-1106 (TI)"] },
+                { day: "Mon", p: ["PHY-1101 (HM)", "GEEL-1106 (TI)", "GEEM-1101 (SIC)", "CCE-1106 Lab (MJH)", "CCE-1106 Lab (MJH)", "CCE-1106 Lab (MJH)"] },
+                { day: "Tue", p: ["CCE-1103 (IUF)", "CCE-1103 (IUF)", "-", "-", "CCE-1105 (MJH)", "CCE-1102 Lab (NS)", "CCE-1102 Lab (NS)"] },
+                { day: "Wed", p: ["CCE-1105 (MJH)", "GEEL-1106 (TI)", "GEEM-1101 (SIC)", "PHY-1101 (HM)", "PHY-1101 (HM)", "MATH-1101 (AH)"] }
+            ],
+            "1BM": [
+                { day: "Sat", p: ["CCE-1106 Lab (MJH)", "CCE-1106 Lab (MJH)", "CCE-1106 Lab (MJH)", "CCE-1103 (IUF)", "CCE-1103 (IUF)", "-"] },
+                { day: "Sun", p: ["CCE-1105 (MJH)", "GEEL-1106 (TI)", "-", "CCE-1104 Lab (IUF)", "CCE-1104 Lab (IUF)", "CCE-1104 Lab (IUF)"] },
+                { day: "Mon", p: ["CCE-1105 (MJH)", "CCE-1105 (MJH)", "GEEL-1106 (TI)", "PHY-1101 (HM)", "PHY-1101 (HM)", "-"] },
+                { day: "Tue", p: ["CCE-1102 Lab (NS)", "CCE-1102 Lab (NS)", "MATH-1101 (AH)", "-", "GEEL-1106 (TI)", "-"] },
+                { day: "Wed", p: ["GEEM-1101 (MOF)", "GEEM-1101 (MOF)", "CCE-1103 (IUF)", "MATH-1101 (AH)", "MATH-1101 (AH)", "PHY-1101 (HM)"] }
+            ],
+            "2AM": [
+                { day: "Sat", p: ["MDP-1201 (MMR)", "PHY-1201 (HM)", "PHY-1201 (HM)", "CCE-1208 Lab (MJH)", "CCE-1208 Lab (MJH)", "CCE-1208 Lab (MJH)"] },
+                { day: "Sun", p: ["-", "CCE-1209 (IUF)", "CCE-1209 (IUF)", "CCE-1207 (MJH)", "-", "MATH-1201 (AH)"] },
+                { day: "Mon", p: ["CCE-1206 Lab (ANS)", "CCE-1206 Lab (ANS)", "CCE-1206 Lab (ANS)", "MATH-1201 (AH)", "MATH-1201 (AH)", "-"] },
+                { day: "Tue", p: ["PHY-1202 Lab (HM)", "PHY-1202 Lab (HM)", "PHY-1202 Lab (HM)", "GEED-1201 (AI)", "CCE-1207 (MJH)", "CCE-1207 (MJH)"] },
+                { day: "Wed", p: ["CCE-1209 (IUF)", "GEED-1201 (AI)", "PHY-1201 (HM)", "CCE-1210 Lab (IUF)", "CCE-1210 Lab (IUF)", "CCE-1210 Lab (IUF)"] }
+            ],
+            "3AM": [
+                { day: "Sat", p: ["-", "-", "MDP-2302 (MU)", "MATH-2301 (DMGH)", "MATH-2301 (DMGH)", "MATH-2301 (DMGH)"] },
+                { day: "Sun", p: ["CCE-2301 (AAM)", "CCE-2302 Lab (AAM)", "CCE-2302 Lab (AAM)", "CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)"] },
+                { day: "Mon", p: ["-", "CHEM-2302 Lab (DMS)", "CHEM-2302 Lab (DMS)", "CHEM-2301 (DMS)", "CHEM-2301 (DMS)", "CHEM-2301 (DMS)"] },
+                { day: "Tue", p: ["CCE-2305 (MAA)", "CCE-2305 (MAA)", "-", "-", "GEED-2301 (AI)", "-"] },
+                { day: "Wed", p: ["GEED-2301 (AI)", "CCE-2307 (MIK)", "CCE-2307 (MIK)", "-", "CCE-2301 (AAM)", "CCE-2301 (AAM)"] }
+            ],
+            "3BM": [
+                { day: "Sat", p: ["MATH-2301 (DMGH)", "MATH-2301 (DMGH)", "MATH-2301 (DMGH)", "CCE-2307 (AA)", "CCE-2307 (AA)", "MDP-2305 (SA)"] },
+                { day: "Sun", p: ["CHEM-2301 (DMS)", "CHEM-2301 (DMS)", "CHEM-2301 (DMS)", "CHEM-2302 Lab (DMS)", "CHEM-2302 Lab (DMS)", "CHEM-2302 Lab (DMS)"] },
+                { day: "Mon", p: ["-", "-", "CCE-2301 (AAM)", "CCE-2301 (AAM)", "-", "-"] },
+                { day: "Tue", p: ["CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)", "CCE-2310 Lab (MR)", "MDP-2305 (MAA)", "MDP-2305 (MAA)", "GEED-2302 (AI)"] },
+                { day: "Wed", p: ["CCE-2302 Lab (AAM)", "CCE-2302 Lab (AAM)", "GEED-2302 (AI)", "-", "-", "-"] }
+            ],
+            "4AM": [
+                { day: "Sat", p: ["-", "STAT-2401 (MSH)", "STAT-2401 (MSH)", "MATH-2401 (AH)", "CCE-2411 (RA)", "CCE-2411 (RA)"] },
+                { day: "Sun", p: ["CCE-2408 Lab (NCS)", "CCE-2408 Lab (NCS)", "CCE-2408 Lab (NCS)", "-", "-", "-"] },
+                { day: "Mon", p: ["MATH-2401 (AH)", "MATH-2401 (AH)", "GEBL-2401 (MHI)", "CCE-2401 (MIK)", "CCE-2401 (MIK)", "CCE-2407 (NCS)"] },
+                { day: "Tue", p: ["-", "GEBL-2401 (MHI)", "CCE-2411 (RA)", "CCE-2412 Lab (RA)", "CCE-2412 Lab (RA)", "CCE-2412 Lab (RA)"] },
+                { day: "Wed", p: ["CCE-2407 (NCS)", "CCE-2407 (NCS)", "-", "CCE-2406 Lab (MR)", "CCE-2406 Lab (MR)", "CCE-2406 Lab (MR)"] }
+            ],
+            "5AM": [
+                { day: "Sat", p: ["ACC-3501 (DSA)", "ACC-3501 (DSA)", "CCE-3509 (ANS)", "-", "-", "-"] },
+                { day: "Sun", p: ["URED-3503 (MMA)", "CCE-3505 (MHS)", "CCE-3505 (MHS)", "CCE-3502 Lab (N/A)", "CCE-3502 Lab (N/A)", "MDP-3503 (RA)"] },
+                { day: "Mon", p: ["CCE-3501 (N/A)", "CCE-3501 (N/A)", "CCE-3505 (MHS)", "CCE-3508 Lab (ARAM)", "CCE-3508 Lab (ARAM)", "-"] },
+                { day: "Tue", p: ["URED-3503 (MMA)", "CCE-3509 (ANS)", "CCE-3509 (ANS)", "CCE-3507 (ARAM)", "CCE-3507 (ARAM)", "-"] },
+                { day: "Wed", p: ["CCE-3506 Lab (MHS)", "CCE-3506 Lab (MHS)", "CCE-3511 (DMJI)", "CCE-3511 (DMJI)", "CCE-3503 (NCS)", "CCE-3503 (NCS)"] }
+            ],
+            "6AM": [
+                { day: "Sat", p: ["CCE-3601 Lab (DMSI)", "CCE-3602 Lab (DMSI)", "CCE-3602 Lab (DMSI)", "CCE-3606 Lab (WBA)", "CCE-3606 Lab (WBA)", "CCE-3606 Lab (WBA)"] },
+                { day: "Sun", p: ["CCE-3601 (DMSI)", "URED-3201 (MMA)", "GEHE-3601 (Adj DABS)", "CCE-3613 (NCS)", "CCE-3613 (NCS)", "MDP-3604 (N/A)"] },
+                { day: "Mon", p: ["CCE-3609 (ARAM)", "CCE-3611 (MIK)", "CCE-3611 (MIK)", "CCE-3614 Lab (NCS)", "CCE-3614 Lab (NCS)", "GEHE-3601 (Adj DABS)"] },
+                { day: "Tue", p: ["CCE-3612 Lab (MIK)", "CCE-3612 Lab (MIK)", "CCE-3612 Lab (MIK)", "CCE-3616 (DMS)", "CCE-3616 (DMS)", "URED-3201 (MMA)"] },
+                { day: "Wed", p: ["CCE-3611 (MIK)", "CCE-3609 (ARAM)", "CCE-3609 (ARAM)", "-", "-", "-"] }
+            ],
+            "7AM": [
+                { day: "Sat", p: ["CCE-4719 Lab (SMI)", "CCE-4720 Lab (SMI)", "CCE-4720 Lab (SMI)", "CCE-4708 Lab (DMAH)", "CCE-4708 Lab (DMAH)", "CCE-4708 Lab (DMAH)"] },
+                { day: "Sun", p: ["CCE-4706 Lab (MI)", "CCE-4706 Lab (MI)", "CCE-4705 (MI)", "CCE-4705 (MI)", "CCE-4707 (DMAH)", "-"] },
+                { day: "Mon", p: ["CCE-4830 Lab (MR)", "CCE-4830 Lab (MR)", "URIH-4701 (NTH)", "URIH-4701 (NTH)", "CCE-4829 (MR)", "CCE-4829 (MR)"] },
+                { day: "Tue", p: ["-", "ECON-4701 (DSA)", "ECON-4701 (DSA)", "CCE-4702 Lab (HJ)", "CCE-4702 Lab (HJ)", "CCE-4702 Lab (HJ)"] },
+                { day: "Wed", p: ["CCE-4711 (DMJI)", "CCE-4711 (DMJI)", "CCE-4701 (HJ)", "CCE-4701 (HJ)", "CCE-4701 (HJ)", "CCE-4719 (SMI)"] }
+            ],
+            "8AM": [
+                { day: "Sat", p: ["MGT-4701 (DJ)", "MGT-4701 (DJ)", "-", "CCE-4808 Lab (ZUA)", "CCE-4808 Lab (ZUA)", "CCE-4808 Lab (ZUA)"] },
+                { day: "Sun", p: ["CCE-4825 (MZH)", "CCE-4806 Lab (ANS)", "CCE-4806 Lab (ANS)", "CCE-4825 (MZH)", "CCE-4826 Lab (MZH)", "CCE-4826 Lab (MZH)"] },
+                { day: "Mon", p: ["-", "CCE-4804 Lab (AAM)", "CCE-4804 Lab (AAM)", "-", "CCE-4805 (ANS)", "CCE-4803 (AAM)", "CCE-4803 (AAM)"] },
+                { day: "Tue", p: ["CCE-4805 (ANS)", "-", "-", "CCE-4802 Lab (MIK)", "CCE-4802 Lab (MIK)", "-"] },
+                { day: "Wed", p: ["LAW-4821 (MMM)", "LAW-4821 (MMM)", "-", "-", "CCE-4801 (N/A)", "CCE-4801 (N/A)"] }
+            ]
+        };
 
         const cceFaculty = [
-             { name: "Prof. Engr. Md. Razu Ahmed", short: "RA", role: "Chairman", mob: "01874543665", cat: "Regular" },
+            // --- Regular Faculty ---
+
+            { name: "Prof. Engr. Md. Razu Ahmed", short: "RA", role: "Chairman", mob: "01874543665", cat: "Regular" },
+
             { name: "Dr. Mohammed Saifuddin", short: "DMS", role: "Assistant Professor", mob: "01945167849", cat: "Regular" },
+
             { name: "Engr. MD Jiabul Hoque", short: "MJH", role: "Assistant Professor", mob: "01989685996", cat: "Regular" },
+
             { name: "Mr. Amanul Hoque", short: "AH", role: "Lecturer", mob: "01818673657", cat: "Regular" },
+
             { name: "Ms. Tania Sultana", short: "TS", role: "Lecturer", mob: "01515284723", cat: "Regular" },
+
             { name: "Engr. Hassan Jaki", short: "HJ", role: "Lecturer", mob: "01825362202", cat: "Regular" },
+
             { name: "Ms. Jannatul Naima", short: "JN", role: "Lecturer", mob: "01624924499", cat: "Regular" },
+
             { name: "Md. Hasan Mia", short: "HM", role: "Lecturer", mob: "01787917221", cat: "Regular" },
+
             { name: "Mr. Mirza Raquib", short: "MR", role: "Lecturer", mob: "01319034382", cat: "Regular" },
+
             { name: "Atia Jahan", short: "AJ", role: "Lecturer", mob: "01400388302", cat: "Regular" },
+
             { name: "Md. Nurnobi Chowdhury Saddam", short: "NCS", role: "Lecturer", mob: "01558268715", cat: "Regular" },
+
             { name: "Mr. Abdullah Al Masud", short: "AAM", role: "Lecturer", mob: "01719801221", cat: "Regular" },
+
             { name: "Md. Imam Uddin Forkan", short: "IUF", role: "Lecturer", mob: "01521536448", cat: "Regular" },
+
+            // --- Adjunct Faculty ---
+
             { name: "Dr. Md. Azad Hossain", short: "DMAH", role: "Professor (CUET)", mob: "01783756981", cat: "Adjunct" },
+
             { name: "Dr. Md. Jahedul Islam", short: "DMJI", role: "Professor (CUET)", mob: "01792451681", cat: "Adjunct" },
+
             { name: "Dr. Md. Golam Hafez", short: "DMGH", role: "Professor (Math, CUET)", mob: "01712340602", cat: "Adjunct" },
+
             { name: "Dr. Md. Saiful Islam", short: "DMSI", role: "Associate Professor (CUET)", mob: "01840066254", cat: "Adjunct" },
-            { name: "Md. Kamal Hossen", short: "MKH", role: "Associate Professor (CUET)", mob: "01816012649", cat: "Adjunct" }
+
+            { name: "Md. Kamal Hossen", short: "MKH", role: "Associate Professor (CUET)", mob: "01816012649", cat: "Adjunct" },
+
+            { name: "Md. Shahidul Hoque", short: "MSH", role: "Associate Professor (CU)", mob: "01818921964", cat: "Adjunct" },
+
+            { name: "Md. Riyad Hossain", short: "MRH", role: "Lecturer (UCTC)", mob: "01631187291", cat: "Adjunct" },
+
+            { name: "Md. Ayubali", short: "MA", role: "Adjunct Faculty", mob: "01864792153", cat: "Adjunct" },
+
+            { name: "Mr. Syed Mainul Islam", short: "SMI", role: "Adjunct Faculty", mob: "01521488497", cat: "Adjunct" },
+
+            { name: "Mohammad Istiak Khan", short: "MIK", role: "Adjunct Faculty", mob: "01625142108", cat: "Adjunct" },
+
+            { name: "Md. Warid Bin Azad", short: "MWBA", role: "Adjunct Faculty", mob: "01671911645", cat: "Adjunct" },
+
+            { name: "Mr. Abu Noman Siddike", short: "ANS", role: "Adjunct Faculty", mob: "01741270048", cat: "Adjunct" },
+
+            { name: "Abu Raihan Anchari Miskat", short: "ARAM", role: "Adjunct Faculty", mob: "01871582887", cat: "Adjunct" },
+
+            { name: "Zia Uddin Ahmed", short: "ZUA", role: "Adjunct Faculty", mob: "01670502610", cat: "Adjunct" },
+
+            { name: "Md. Abu Bakar Siddiq Sayem", short: "MABSS", role: "Adjunct Faculty", mob: "01825507837", cat: "Adjunct" },
+
+            { name: "Arafat Al Fahim", short: "AAF", role: "Adjunct Faculty", mob: "01866695182", cat: "Adjunct" },
+
+            { name: "Md. Hasan Shorif", short: "MHS", role: "Adjunct Faculty", mob: "01858562734", cat: "Adjunct" },
+
+            { name: "Afif Hossain Irfan", short: "AHI", role: "Adjunct Faculty", mob: "01521536082", cat: "Adjunct" },
+
+            { name: "Mohammad Afjalur Rahman", short: "MAR", role: "Adjunct Faculty", mob: "01716742661", cat: "Adjunct" },
+
+            { name: "Md. Ziaul Hoque", short: "MZH", role: "Adjunct Faculty", mob: "01518602747", cat: "Adjunct" },
+
+            { name: "Md. Mahmudul Arif", short: "MMA", role: "Adjunct Faculty", mob: "01789077979", cat: "Adjunct" },
+
+            { name: "Md. Ali Akbar", short: "MAA", role: "Lecturer (CSE, GAM)", mob: "01791138588", cat: "Adjunct" },
+
+            { name: "Abu Monsur Mohammad Fahim", short: "AMMF", role: "Software Engineering", mob: "01821569161", cat: "Adjunct" },
+
+            { name: "Md. Ismail", short: "MI", role: "Adjunct (CSE, IIUC)", mob: "01690068050", cat: "Adjunct" },
+
+            { name: "Farhana Ahmmed", short: "FA", role: "Adjunct Faculty", mob: "01839304202", cat: "Adjunct" }
         ];
 
         function renderRoutine() {
             const key = document.getElementById('routine-select').value;
             const table = document.getElementById('routine-table');
             const data = routines[key] || routines["3AM"];
-            
+
             table.innerHTML = `
                 <thead>
                     <tr class="text-white/30 border-b border-white/5 uppercase tracking-tighter">
@@ -548,7 +665,7 @@
         function renderQuestionBanks() {
             const list = document.getElementById('question-list');
             let html = '';
-            for(let i=1; i<=8; i++) {
+            for (let i = 1; i <= 8; i++) {
                 html += `
                     <div class="glass-card p-4 flex flex-col items-center hover:bg-red-500/10 cursor-default">
                         <div class="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center mb-2 font-bold shadow-lg">0${i}</div>
@@ -583,7 +700,7 @@
 
         const questionBankLinks = {
             mid: [
-                "1K4AG5fu_Jfc4ED1um2_PB9jrEXKGPJhH", "1e80Ll_jJB6ri7BSxN7bM0I-056AfzD5u", 
+                "1K4AG5fu_Jfc4ED1um2_PB9jrEXKGPJhH", "1e80Ll_jJB6ri7BSxN7bM0I-056AfzD5u",
                 "1bia9MD_yGIfAvOmrba37aWrlZnOhbyko", "1Hbes7ttpyHCUtHPEMAt_S6a1jeScUrj7",
                 "1svvJVXT3Eu8bhy8-dctu6IzhFhvt96q_", "1SLBjGSct9BXqky33Qbx1eGV8AVIvUXTy",
                 "1_2ru-6LN5x533qk_nCDn5afcFUVO_Ur9", "1syaguM1Km_70I8UYvhjezX1hXi-5GHT0"
@@ -602,11 +719,11 @@
                 <div class="glass-card p-5 border-t-4 border-red-500 flex flex-col h-full">
                     <h3 class="font-bold text-sm mb-4 opacity-50 uppercase tracking-wider">${r.sem}</h3>
                     <div class="space-y-2 mt-auto">
-                        ${r.combined ? 
-                            `<a href="https://drive.google.com/drive/folders/${r.mid}" target="_blank" class="block w-full py-2.5 px-4 bg-white/5 rounded-lg text-center text-xs font-bold hover:bg-red-500 transition-all uppercase"><i class="fas fa-folder-open mr-2"></i>MID + FINAL</a>` :
-                            `<a href="https://drive.google.com/drive/folders/${r.mid}" target="_blank" class="block w-full py-2.5 px-4 bg-white/5 rounded-lg text-center text-xs font-bold hover:bg-red-500 transition-all uppercase"><i class="fas fa-file-pdf mr-2 text-red-400"></i>MID PDFs</a>
+                        ${r.combined ?
+                    `<a href="https://drive.google.com/drive/folders/${r.mid}" target="_blank" class="block w-full py-2.5 px-4 bg-white/5 rounded-lg text-center text-xs font-bold hover:bg-red-500 transition-all uppercase"><i class="fas fa-folder-open mr-2"></i>MID + FINAL</a>` :
+                    `<a href="https://drive.google.com/drive/folders/${r.mid}" target="_blank" class="block w-full py-2.5 px-4 bg-white/5 rounded-lg text-center text-xs font-bold hover:bg-red-500 transition-all uppercase"><i class="fas fa-file-pdf mr-2 text-red-400"></i>MID PDFs</a>
                              <a href="https://drive.google.com/drive/folders/${r.final}" target="_blank" class="block w-full py-2.5 px-4 bg-white/5 rounded-lg text-center text-xs font-bold hover:bg-red-500 transition-all uppercase"><i class="fas fa-file-pdf mr-2 text-red-400"></i>FINAL PDFs</a>`
-                        }
+                }
                         ${r.sessional ? `<a href="https://drive.google.com/drive/folders/${r.sessional}" target="_blank" class="block w-full py-2.5 px-4 bg-white/10 rounded-lg text-center text-xs font-bold hover:bg-yellow-600 transition-all uppercase"><i class="fas fa-flask mr-2"></i>SESSIONAL</a>` : ''}
                     </div>
                 </div>
@@ -616,10 +733,10 @@
         function renderQuestionBanks() {
             const list = document.getElementById('question-list');
             let html = '';
-            for(let i=0; i<8; i++) {
+            for (let i = 0; i < 8; i++) {
                 html += `
                     <div class="glass-card p-4 flex flex-col items-center hover:bg-red-500/10 transition-all group">
-                        <div class="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center mb-2 font-bold shadow-lg group-hover:scale-110 transition-transform">0${i+1}</div>
+                        <div class="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center mb-2 font-bold shadow-lg group-hover:scale-110 transition-transform">0${i + 1}</div>
                         <span class="text-[10px] font-bold uppercase opacity-40 mb-3">Sem Question</span>
                         <div class="flex flex-col gap-1.5 w-full">
                             <a href="https://drive.google.com/drive/folders/${questionBankLinks.mid[i]}" target="_blank" 
@@ -635,7 +752,7 @@
 
         function renderFaculty(data = cceFaculty) {
             const list = document.getElementById('faculty-list');
-            if(!list) return;
+            if (!list) return;
             list.innerHTML = data.map(f => `
                 <div class="bg-white/5 p-4 rounded-xl border-l-2 border-red-500 hover:bg-white/10 transition-all group">
                     <div class="flex justify-between items-start">
@@ -654,20 +771,20 @@
 
         function filterFaculty() {
             const query = document.getElementById('faculty-search').value.toLowerCase();
-            const filtered = cceFaculty.filter(f => 
-                f.name.toLowerCase().includes(query) || 
+            const filtered = cceFaculty.filter(f =>
+                f.name.toLowerCase().includes(query) ||
                 f.short.toLowerCase().includes(query) ||
                 f.role.toLowerCase().includes(query)
             );
             renderFaculty(filtered);
         }
 
-        window.onload = function() {
+        window.onload = function () {
             AOS.init({ duration: 1000, once: true });
             renderResources();
             renderQuestionBanks();
             renderFaculty();
-            
+
             // Global Search Filter
             document.getElementById('global-search').addEventListener('input', (e) => {
                 const q = e.target.value.toLowerCase();
@@ -686,4 +803,5 @@
         };
     </script>
 </body>
+
 </html>
